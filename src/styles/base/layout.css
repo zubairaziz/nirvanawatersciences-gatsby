@@ -1,0 +1,75 @@
+:root {
+  --container-width: 1060px;
+  --container-lg-width: 1260px;
+  --container-padding: 10vw;
+
+  @screen md {
+    --container-padding: 5vw;
+  }
+
+  @screen xl {
+    --container-padding: 50px;
+  }
+}
+
+.container,
+.container-lg {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  max-width: calc(var(--container-width) + (2 * var(--container-padding)));
+
+  @screen lg {
+    --container-padding: 15vw;
+  }
+}
+
+.container-lg {
+  max-width: calc(var(--container-lg-width) + (2 * var(--container-padding)));
+}
+
+.container-fluid {
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+
+  @screen xl {
+    padding-left: 130px;
+    padding-right: 130px;
+  }
+
+  @screen 2xl {
+    padding-left: 145px;
+    padding-right: 145px;
+  }
+}
+
+[data-whatinput='mouse'] [role='button'],
+[data-whatinput='mouse'] input[type='submit'],
+[data-whatinput='mouse'] button {
+  outline: none;
+}
+
+.skip-link {
+  @apply absolute overflow-hidden text-sm;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+
+  &:focus {
+    @apply w-auto h-auto px-3 py-2 text-black bg-white;
+    clip: auto;
+    z-index: 10000;
+  }
+}
+
+.preload * {
+  transition: none !important;
+}
+
+.overflow-y-scroll {
+  -webkit-overflow-scrolling: touch;
+}
