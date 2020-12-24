@@ -34,7 +34,7 @@ const SiteMenu = () => (
               data.allWpMenu.edges[0].node.menuItems &&
               data.allWpMenu.edges[0].node.menuItems.nodes &&
               data.allWpMenu.edges[0].node.menuItems.nodes.map((item) => (
-                <li>
+                <li key={item.url}>
                   <Link to={item.url}>{item.label}</Link>
                 </li>
               ))}

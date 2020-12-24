@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'Hero';
+  src: url('../fonts/hero-light.woff2') format('woff2');
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hero';
+  src: url('../fonts/hero-regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hero';
+  src: url('../fonts/hero-bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+address {
+  @apply not-italic;
+}
