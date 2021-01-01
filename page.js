@@ -1,16 +1,16 @@
 import * as React from 'react'
 import Layout from '../components/Layout'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 
 // markup
-const BlogPageTemplate = ({ data }) => {
+const PageTemplate = ({ data }) => {
   const page = data.allWpPage.edges[0].node
   return (
     <Layout title={page.title}>
-      <main>
+      <article>
         <h1>{page.title}</h1>
         <div className="richtext" dangerouslySetInnerHTML={{ __html: page.content }} />
-      </main>
+      </article>
     </Layout>
   )
 }
@@ -28,4 +28,4 @@ export const query = graphql`
     }
   }
 `
-export default BlogPageTemplate
+export default PageTemplate

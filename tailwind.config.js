@@ -7,7 +7,13 @@ module.exports = {
     fontFamily: {
       sans: ['Hero', ...defaultTheme.fontFamily.sans],
     },
-    extend: {},
+    extend: {
+      colors: {
+        blue: '#01AFEF',
+        indigo: '#2F3392',
+        'dark-gray': '#4D4D4D',
+      },
+    },
   },
   variants: {
     extend: {},

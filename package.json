@@ -8,7 +8,7 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop",
+    "develop": "ENABLE_GATSBY_REFRESH_ENDPOINT=1 GATSBY_EXPERIMENTAL_LAZY_DEVJS=true gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -20,10 +20,12 @@
   "dependencies": {
     "@babel/core": "^7.12.10",
     "@babel/plugin-proposal-decorators": "^7.12.1",
+    "@headlessui/react": "^0.2.0",
     "autoprefixer": "^10.1.0",
     "babel-preset-gatsby": "^0.9.0",
     "dotenv": "^8.2.0",
     "eslint-config-react-app": "^6.0.0",
+    "framer-motion": "^3.1.1",
     "gatsby": "^2.29.1",
     "gatsby-image": "^2.8.0",
     "gatsby-plugin-google-analytics": "^2.8.0",
