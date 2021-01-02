@@ -4,11 +4,16 @@ import FooterPrimaryMenu from './FooterPrimaryMenu'
 import FooterSecondaryMenu from './FooterSecondaryMenu'
 
 const SiteFooter = () => (
-  <footer className="p-4 text-white bg-dark-gray">
+  <footer className="p-4 text-white bg-dark-gray md:pb-16">
     <div className="container">
       <div className="grid grid-cols-1 md:grid-cols-2">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 282 63" className="w-full max-h-full pt-8">
+        <div className="relative">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 282 63"
+            className="w-full max-h-full pt-8 md:w-72 md:max-h-full"
+          >
             <defs />
             <mask id="a" width="28" height="36" x="1" y="1" maskUnits="userSpaceOnUse">
               <path fill="#fff" fillRule="evenodd" d="M1 1.159h27.953V36.84H1V1.16z" clipRule="evenodd" />
@@ -158,7 +163,7 @@ const SiteFooter = () => (
               clipRule="evenodd"
             />
           </svg>
-          <ul className="flex items-center justify-center py-5">
+          <ul className="flex items-center justify-center py-5 md:w-72">
             <li className="mx-5">
               <a href="#test" className="hover:opacity-75">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 22" className="w-5 h-5">
@@ -191,8 +196,17 @@ const SiteFooter = () => (
               </a>
             </li>
           </ul>
+          <div className="font-light text-center md:text-left md:absolute md:bottom-0">
+            <p>&copy; Nirvana Water Sciences</p>
+            <p>
+              Digital By{' '}
+              <a href="https://www.trainor.com" target="_blank" rel="noreferrer noopener" className="hover:underline">
+                TRAINOR
+              </a>
+            </p>
+          </div>
         </div>
-        <div className="grid grid-cols-2">
+        <div className="hidden pt-8 font-light tracking-widest uppercase md:grid md:grid-cols-2">
           <FooterPrimaryMenu />
           <FooterSecondaryMenu />
         </div>

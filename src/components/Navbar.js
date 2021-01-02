@@ -9,7 +9,7 @@ const Navbar = () => {
     setNavIsOpen(() => (navIsOpen ? false : true))
   }
   return (
-    <header className="relative top-0 w-full pt-8">
+    <header className="relative top-0 w-full pt-8 header-nav">
       <div className="container">
         <nav className="flex items-center justify-between w-full">
           <Link to="/">
@@ -181,23 +181,23 @@ const Navbar = () => {
               />
             </svg>
           </Link>
-          <ul className="flex gap-2">
-            <li className="hidden md:block">
+          <ul className="flex gap-x-16">
+            <li className="hidden pb-2 md:block">
               <Link className="text-blue hover:text-indigo" to="/">
                 Home
               </Link>
             </li>
-            <li className="hidden md:block">
+            <li className="hidden pb-2 md:block">
               <Link className="text-blue hover:text-indigo" to="/products">
                 Products
               </Link>
             </li>
-            <li className="hidden md:block">
+            <li className="hidden pb-2 md:block">
               <Link className="text-blue hover:text-indigo" to="/water">
                 The Water
               </Link>
             </li>
-            <li className="hidden md:block">
+            <li className="hidden pb-2 md:block">
               <Link className="text-blue hover:text-indigo" to="/science">
                 Science
               </Link>
@@ -208,12 +208,12 @@ const Navbar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 51 34"
-                  className="w-5 h-5 md:w-8 md:h-8"
+                  className="w-5 h-5 md:w-8 md:h-8 hover:animate-pulse text-blue hover:text-indigo"
                 >
                   <defs />
                   <path
-                    fill="#10BDEB"
-                    fill-rule="evenodd"
+                    fill="currentColor"
+                    fillRule="evenodd"
                     d="M42.191 3.22c-1.397 1.177-2.573 2.06-4.926 2.06s-3.53-.883-4.927-2.06C30.941 2.044 28.956.5 25.5.5s-5.221 1.47-6.838 2.72c-1.618 1.25-2.574 2.06-4.927 2.06-2.353 0-3.529-.883-4.926-2.06C7.412 2.044 5.426.5 1.971.5H.5v2.941h1.471c2.426 0 3.529.882 4.926 2.06 1.397 1.175 3.382 2.72 6.838 2.72s5.221-1.47 6.839-2.72c1.617-1.25 2.573-2.06 4.926-2.06s3.529.882 4.926 2.06c1.398 1.175 3.383 2.72 6.839 2.72 3.456 0 5.22-1.47 6.838-2.72 1.618-1.25 2.573-2.06 4.926-2.06H50.5V.501h-1.471c-3.455.072-5.22 1.47-6.838 2.72z"
                     clipRule="evenodd"
                   />
@@ -223,8 +223,8 @@ const Navbar = () => {
                     clipRule="evenodd"
                   />
                   <path
-                    fill="#10BDEB"
-                    fill-rule="evenodd"
+                    fill="currentColor"
+                    fillRule="evenodd"
                     d="M42.191 15.941c-1.397 1.176-2.573 2.06-4.926 2.06s-3.53-.884-4.927-2.06c-1.397-1.176-3.382-2.72-6.838-2.72s-5.221 1.47-6.838 2.72c-1.618 1.25-2.574 2.06-4.927 2.06-2.353 0-3.529-.884-4.926-2.06-1.397-1.176-3.383-2.72-6.838-2.72H.5v2.941h1.471c2.426 0 3.529.882 4.926 2.058 1.397 1.177 3.382 2.721 6.838 2.721s5.221-1.47 6.839-2.72c1.617-1.25 2.573-2.059 4.926-2.059s3.529.882 4.926 2.058c1.398 1.177 3.383 2.721 6.839 2.721 3.456 0 5.22-1.47 6.838-2.72 1.618-1.25 2.573-2.059 4.926-2.059H50.5V13.22h-1.471c-3.455.074-5.22 1.471-6.838 2.721z"
                     clipRule="evenodd"
                   />
@@ -234,8 +234,8 @@ const Navbar = () => {
                     clipRule="evenodd"
                   />
                   <path
-                    fill="#10BDEB"
-                    fill-rule="evenodd"
+                    fill="currentColor"
+                    fillRule="evenodd"
                     d="M42.191 28.735c-1.397 1.177-2.573 2.06-4.926 2.06s-3.53-.883-4.927-2.06c-1.397-1.176-3.382-2.72-6.838-2.72s-5.221 1.47-6.838 2.72c-1.618 1.25-2.574 2.06-4.927 2.06-2.353 0-3.529-.883-4.926-2.06-1.397-1.176-3.383-2.72-6.838-2.72H.5v2.941h1.471c2.426 0 3.529.882 4.926 2.06 1.397 1.175 3.382 2.72 6.838 2.72s5.221-1.47 6.839-2.72c1.617-1.25 2.573-2.06 4.926-2.06s3.529.882 4.926 2.06c1.398 1.175 3.383 2.72 6.839 2.72 3.456 0 5.22-1.47 6.838-2.72 1.618-1.25 2.573-2.06 4.926-2.06H50.5v-2.94h-1.471c-3.455 0-5.22 1.396-6.838 2.72z"
                     clipRule="evenodd"
                   />

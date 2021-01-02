@@ -24,18 +24,14 @@ const SiteMenu = () => (
     `}
     render={(data) => {
       return (
-        <div>
+        <div className="border-white">
           <ul>
             {data &&
-              data.allWpMenu &&
-              data.allWpMenu.edges &&
-              data.allWpMenu.edges[0] &&
-              data.allWpMenu.edges[0].node &&
-              data.allWpMenu.edges[0].node.menuItems &&
-              data.allWpMenu.edges[0].node.menuItems.nodes &&
-              data.allWpMenu.edges[0].node.menuItems.nodes.map((item) => (
-                <li key={item.url}>
-                  <Link to={item.url}>{item.label}</Link>
+              data?.allWpMenu?.edges[0]?.node?.menuItems?.nodes.map((item) => (
+                <li className="mb-5" key={item.url}>
+                  <Link className="hover:underline" to={item.url}>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
           </ul>

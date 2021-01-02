@@ -2,6 +2,7 @@
 
 /* Components */
 @import 'tailwindcss/components';
+@import 'components/navbar';
 
 /* Utilities */
 @import 'base/utilities';

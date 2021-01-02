@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import Helmet from 'react-helmet'
 
 import Navbar from './Navbar'
@@ -17,7 +17,7 @@ const Layout = (props) => {
       <div style={{ gridTemplateRows: 'auto 1fr auto' }} className="grid min-h-screen">
         <NavigationContext.Provider value={[navIsOpen, setNavIsOpen]}>
           <SiteMenu />
-          <Navbar />
+          <Navbar location={props.location} />
         </NavigationContext.Provider>
         <main id="main-content">{children}</main>
         <SiteFooter />

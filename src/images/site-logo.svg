@@ -5,7 +5,7 @@
     <path id="c" d="M.161.071h31.638v34.398H.161z"/>
     <path id="e" d="M.124.047h7.534v8.894H.124z"/>
   </defs>
-  <g fill="none" fill-rule="evenodd">
+  <g fill="none" fillRule="evenodd">
     <g transform="translate(0 .585)">
       <mask id="b" fill="#fff">
         <use xlink:href="#a"/>
