@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import Helmet from 'react-helmet'
 import useWhatInput from 'react-use-what-input'
 
 import Navbar from './Navbar'
+import SiteMeta from './SiteMeta'
 import SiteMenu from './SiteMenu'
 import SiteFooter from './SiteFooter'
 
@@ -12,10 +12,18 @@ const Layout = (props) => {
   const [currentInput, currentIntent] = useWhatInput()
   const [navIsOpen, setNavIsOpen] = useState(false)
 
-  const { title, slug, children } = props
+  const { title, slug, children, canonical, metaDesc, opengraphSiteName, seoTitle, ogImage } = props
   return (
     <div>
-      <Helmet title={`${title} | Nirvana`} />
+      <SiteMeta
+        title={title}
+        slug={slug}
+        canonical={canonical}
+        metaDesc={metaDesc}
+        opengraphSiteName={opengraphSiteName}
+        seoTitle={seoTitle}
+        ogImage={ogImage}
+      />
       <a className="border rounded-b-lg outline-none skip-link focus:ring border-indigo" href="#main-content">
         Skip to main content
       </a>
@@ -24,7 +32,7 @@ const Layout = (props) => {
           <SiteMenu />
           <Navbar location={props.location} />
         </NavigationContext.Provider>
-        <main id="main-content" className={`${slug}`}>
+        <main id="main-content" className={`${slug}-page`}>
           {children}
         </main>
         <SiteFooter />

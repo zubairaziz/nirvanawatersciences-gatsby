@@ -8,7 +8,7 @@ const BlogPageTemplate = ({ data }) => {
   const page = data.allWpPage.edges[0].node
   const posts = data.allWpPost.edges
   return (
-    <Layout title={page.title} slug={`${page.slug}-page`}>
+    <Layout title={page.title} slug={`${page.slug}`}>
       <article>
         <div className="container">
           <header className="pt-4 text-center text-dark-gray md:pt-48">
@@ -89,6 +89,27 @@ export const query = graphql`
             largeHeader
             leadIn
             smallHeader
+          }
+          seo {
+            canonical
+            metaDesc
+            opengraphDescription
+            opengraphSiteName
+            opengraphPublisher
+            opengraphPublishedTime
+            title
+            twitterDescription
+            twitterTitle
+            opengraphImage {
+              link
+              localFile {
+                childImageSharp {
+                  fixed(height: 630, width: 1200) {
+                    src
+                  }
+                }
+              }
+            }
           }
         }
       }

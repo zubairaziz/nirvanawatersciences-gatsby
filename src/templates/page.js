@@ -6,7 +6,7 @@ import { graphql } from 'gatsby'
 const BlogPageTemplate = ({ data }) => {
   const page = data.allWpPage.edges[0].node
   return (
-    <Layout title={page.title} slug={`${page.slug}-page`}>
+    <Layout title={page.title} slug={`${page.slug}`}>
       <article>
         <h1>{page.title}</h1>
         <div className="richtext" dangerouslySetInnerHTML={{ __html: page.content }} />
@@ -23,6 +23,26 @@ export const query = graphql`
           content
           id
           slug
+          seo {
+            canonical
+            metaDesc
+            opengraphSiteName
+            opengraphPublisher
+            opengraphPublishedTime
+            title
+            twitterDescription
+            twitterTitle
+            opengraphImage {
+              link
+              localFile {
+                childImageSharp {
+                  fixed(height: 630, width: 1200) {
+                    src
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

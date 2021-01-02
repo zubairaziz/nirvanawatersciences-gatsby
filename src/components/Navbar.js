@@ -12,7 +12,8 @@ const Navbar = () => {
     <header className="relative top-0 w-full pt-8 header-nav">
       <div className="container">
         <nav className="flex items-center justify-between w-full">
-          <Link to="/">
+          <Link to="/" aria-label="Home">
+            <span className="sr-only">Home</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -203,7 +204,8 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <button onClick={handleButtonPress}>
+              <button onClick={handleButtonPress} aria-label="Menu">
+                <span className="sr-only">Menu</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

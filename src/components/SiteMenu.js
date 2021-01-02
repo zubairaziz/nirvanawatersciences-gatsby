@@ -88,7 +88,9 @@ const SiteMenu = () => {
             <button
               onClick={handleButtonPress}
               className="fixed z-50 block w-5 h-5 top-4 right-4 md:top-20 md:right-20"
+              aria-label="Close"
             >
+              <span className="sr-only">Close</span>
               <svg viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
                 <path d="M1.26562 1.45745L21.3082 21.5" stroke="white" strokeWidth="3" />
                 <path d="M21.3086 1.45745L1.26604 21.5" stroke="white" strokeWidth="3" />

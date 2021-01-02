@@ -5,8 +5,23 @@ import { graphql } from 'gatsby'
 // markup
 const IndexPageTemplate = ({ data }) => {
   const page = data.allWpPage.edges[0].node
+  const title = page?.title
+  const slug = page?.slug
+  const canonical = page?.seo?.canonical
+  const metaDesc = page?.seo?.metaDesc
+  const opengraphSiteName = page?.seo?.opengraphSiteName
+  const seoTitle = page?.seo?.title
+  const ogImage = page?.seo?.opengraphImage?.localFile?.childImageSharp?.fixed?.src
   return (
-    <Layout title={page.title} slug={`${page.slug}-page`}>
+    <Layout
+      title={title}
+      slug={slug}
+      canonical={canonical}
+      metaDesc={metaDesc}
+      opengraphSiteName={opengraphSiteName}
+      seoTitle={seoTitle}
+      ogImage={ogImage}
+    >
       <article>
         <div className="container">
           <h1>{page.title}</h1>
@@ -34,6 +49,22 @@ export const query = graphql`
           content
           id
           slug
+          seo {
+            canonical
+            metaDesc
+            opengraphSiteName
+            title
+            opengraphImage {
+              link
+              localFile {
+                childImageSharp {
+                  fixed(height: 630, width: 1200) {
+                    src
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
