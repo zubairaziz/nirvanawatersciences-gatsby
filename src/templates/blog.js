@@ -7,8 +7,23 @@ import Img from 'gatsby-image'
 const BlogPageTemplate = ({ data }) => {
   const page = data.allWpPage.edges[0].node
   const posts = data.allWpPost.edges
+  const title = page?.title
+  const slug = page?.slug
+  const canonical = page?.seo?.canonical
+  const metaDesc = page?.seo?.metaDesc
+  const opengraphSiteName = page?.seo?.opengraphSiteName
+  const seoTitle = page?.seo?.title
+  const ogImage = page?.seo?.opengraphImage?.localFile?.childImageSharp?.fixed?.src
   return (
-    <Layout title={page.title} slug={`${page.slug}`}>
+    <Layout
+      title={title}
+      slug={slug}
+      canonical={canonical}
+      metaDesc={metaDesc}
+      opengraphSiteName={opengraphSiteName}
+      seoTitle={seoTitle}
+      ogImage={ogImage}
+    >
       <article>
         <div className="container">
           <header className="pt-4 text-center text-dark-gray md:pt-48">
@@ -93,13 +108,8 @@ export const query = graphql`
           seo {
             canonical
             metaDesc
-            opengraphDescription
             opengraphSiteName
-            opengraphPublisher
-            opengraphPublishedTime
             title
-            twitterDescription
-            twitterTitle
             opengraphImage {
               link
               localFile {

@@ -5,8 +5,23 @@ import { graphql } from 'gatsby'
 // markup
 const PostTemplate = ({ data }) => {
   const post = data.allWpPost.edges[0].node
+  const title = post?.title
+  const slug = post?.slug
+  const canonical = post?.seo?.canonical
+  const metaDesc = post?.seo?.metaDesc
+  const opengraphSiteName = post?.seo?.opengraphSiteName
+  const seoTitle = post?.seo?.title
+  const ogImage = post?.seo?.opengraphImage?.localFile?.childImageSharp?.fixed?.src
   return (
-    <Layout title={post.title}>
+    <Layout
+      title={title}
+      slug={slug}
+      canonical={canonical}
+      metaDesc={metaDesc}
+      opengraphSiteName={opengraphSiteName}
+      seoTitle={seoTitle}
+      ogImage={ogImage}
+    >
       <article>
         <h1>{post.title}</h1>
         <div className="richtext" dangerouslySetInnerHTML={{ __html: post.content }} />
@@ -23,6 +38,39 @@ export const query = graphql`
           content
           id
           slug
+          categories {
+            nodes {
+              name
+            }
+          }
+          acfFeaturedImage {
+            featuredImage {
+              localFile {
+                childImageSharp {
+                  fluid(srcSetBreakpoints: [480, 640, 768, 1024, 1280, 1536], fit: COVER) {
+                    srcSet
+                    srcSetWebp
+                  }
+                }
+              }
+            }
+          }
+          seo {
+            canonical
+            metaDesc
+            opengraphSiteName
+            title
+            opengraphImage {
+              link
+              localFile {
+                childImageSharp {
+                  fixed(height: 630, width: 1200) {
+                    src
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

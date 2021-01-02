@@ -12,9 +12,17 @@ const SiteMeta = (props) => {
       </title>
       <meta name="description" content={metaDesc} />
       <link rel="canonical" href={canonical} />
+
       <meta property="og:title" content={`${seoTitle ? seoTitle : title} | ${opengraphSiteName}`} />
+      <meta property="og:description" content={metaDesc} />
       <meta property="og:url" content={canonical} />
       <meta property="og:image" content={ogImage} />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="" />
+      <meta name="twitter:title" content={`${seoTitle ? seoTitle : title} | ${opengraphSiteName}`} />
+      <meta name="twitter:description" content={metaDesc} />
+      <meta name="twitter:image" content={ogImage} />
     </Helmet>
   )
 }
