@@ -3,9 +3,13 @@
 /* Components */
 @import 'tailwindcss/components';
 @import 'components/navbar';
+@import 'components/button';
 
 /* Utilities */
 @import 'base/utilities';
 @import 'base/typography';
 @import 'base/layout';
 @import 'tailwindcss/utilities';
+
+/* Sections */
+@import 'sections/blog';

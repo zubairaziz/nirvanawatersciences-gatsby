@@ -6,7 +6,7 @@ import { graphql } from 'gatsby'
 const PageTemplate = ({ data }) => {
   const page = data.allWpPage.edges[0].node
   return (
-    <Layout title={page.title}>
+    <Layout title={page.title} slug={`${page.slug}-page`}>
       <article>
         <h1>{page.title}</h1>
         <div className="richtext" dangerouslySetInnerHTML={{ __html: page.content }} />

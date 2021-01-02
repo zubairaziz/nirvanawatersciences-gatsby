@@ -1,0 +1,17 @@
+.blog-page {
+  picture,
+  source {
+    @apply block object-cover w-full h-full max-h-full;
+  }
+
+  ol li {
+    picture,
+    source,
+    img {
+      transition: all 0.3s ease-out;
+      &:hover {
+        transform: scale(1.025);
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.button {
+  @apply block px-8 py-2 text-xl lowercase transition-colors duration-300 border max-w-max;
+  line-height: 1 !important;
+
+  @screen md {
+    @apply text-2xl;
+    line-height: 1 !important;
+  }
+}
+
+.button-outline {
+  @apply button border-dark-gray text-dark-gray;
+
+  &:hover {
+    @apply text-white shadow-sm bg-dark-gray;
+  }
+}

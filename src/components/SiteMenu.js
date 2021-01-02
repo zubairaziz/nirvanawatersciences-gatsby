@@ -297,7 +297,7 @@ const SiteMenu = () => {
                   <motion.ul
                     // animate={navIsOpen ? 'open' : 'closed'}
                     variants={listVariants}
-                    className="flex flex-col gap-3 py-16 text-center md:py-0 md:text-left"
+                    className="flex flex-col gap-3 py-12 text-center md:py-0 md:text-left"
                   >
                     {data &&
                       data?.allWpMenu?.edges[0]?.node?.menuItems?.nodes.map((item, index) => (
@@ -307,8 +307,12 @@ const SiteMenu = () => {
                           animate={navIsOpen ? 'open' : 'closed'}
                           variants={listItemVariants}
                           exit={{ opacity: 0 }}
+                          className="mb-3"
                         >
-                          <Link className="text-3xl tracking-widest lowercase hover:underline" to={item.url}>
+                          <Link
+                            className="relative z-50 text-3xl tracking-widest lowercase hover:underline"
+                            to={item.url}
+                          >
                             {item.label}
                           </Link>
                         </motion.li>

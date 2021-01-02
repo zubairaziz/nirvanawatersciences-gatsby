@@ -1,14 +1,14 @@
 :root {
-  --container-width: 1060px;
-  --container-lg-width: 1260px;
-  --container-padding: 10vw;
+  --container-width: 1440px;
+  --container-lg-width: 1600px;
+  --container-padding: 1rem;
 
   @screen md {
-    --container-padding: 5vw;
+    --container-padding: 1.5rem;
   }
 
   @screen xl {
-    --container-padding: 50px;
+    --container-padding: 30px;
   }
 }
 
@@ -19,14 +19,6 @@
   padding-left: var(--container-padding);
   padding-right: var(--container-padding);
   max-width: calc(var(--container-width) + (2 * var(--container-padding)));
-
-  @screen lg {
-    --container-padding: 15vw;
-  }
-}
-
-.container-lg {
-  max-width: calc(var(--container-lg-width) + (2 * var(--container-padding)));
 }
 
 .container-fluid {
@@ -60,9 +52,28 @@
   clip: rect(0 0 0 0);
 
   &:focus {
-    @apply w-auto h-auto px-3 py-2 text-black bg-white;
+    @apply w-auto h-auto px-3 py-2 bg-white text-indigo;
     clip: auto;
     z-index: 10000;
+  }
+}
+
+a,
+button {
+  @apply outline-none;
+
+  &:focus {
+    @apply outline-none;
+  }
+}
+
+[data-whatinput='keyboard'],
+[data-whatinput='touch'] {
+  a,
+  button {
+    &:active {
+      @apply outline-none ring-2 ring-opacity-75 ring-indigo;
+    }
   }
 }
 

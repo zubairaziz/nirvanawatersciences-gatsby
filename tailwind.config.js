@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const aspectRatio = require('@tailwindcss/aspect-ratio')
 
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -20,5 +21,5 @@ module.exports = {
       animation: ['hover', 'focus'],
     },
   },
-  plugins: [],
+  plugins: [aspectRatio],
 }

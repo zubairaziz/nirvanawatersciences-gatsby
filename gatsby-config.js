@@ -9,10 +9,10 @@ module.exports = {
   },
   flags: { DEV_SSR: true },
   plugins: [
-    'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-offline',
+    'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-postcss',
     'gatsby-plugin-eslint',

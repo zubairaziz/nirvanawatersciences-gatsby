@@ -7,10 +7,10 @@ const PostTemplate = ({ data }) => {
   const post = data.allWpPost.edges[0].node
   return (
     <Layout title={post.title}>
-      <main>
+      <article>
         <h1>{post.title}</h1>
         <div className="richtext" dangerouslySetInnerHTML={{ __html: post.content }} />
-      </main>
+      </article>
     </Layout>
   )
 }
