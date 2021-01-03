@@ -6,7 +6,7 @@ import { graphql } from 'gatsby'
 const IndexPageTemplate = ({ data }) => {
   const page = data.allWpPage.edges[0].node
   const title = page?.title
-  const slug = page?.slug
+  const slug = ''
   const canonical = page?.seo?.canonical
   const metaDesc = page?.seo?.metaDesc
   const opengraphSiteName = page?.seo?.opengraphSiteName

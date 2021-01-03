@@ -10,7 +10,7 @@ module.exports = {
   flags: { DEV_SSR: true },
   plugins: [
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sitemap',
+    'gatsby-plugin-advanced-sitemap',
     'gatsby-plugin-offline',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',

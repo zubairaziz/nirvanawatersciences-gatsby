@@ -6,7 +6,7 @@ import { graphql } from 'gatsby'
 const PostTemplate = ({ data }) => {
   const post = data.allWpPost.edges[0].node
   const title = post?.title
-  const slug = post?.slug
+  const slug = `blog/${post?.slug}`
   const canonical = post?.seo?.canonical
   const metaDesc = post?.seo?.metaDesc
   const opengraphSiteName = post?.seo?.opengraphSiteName
