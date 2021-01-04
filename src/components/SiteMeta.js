@@ -57,7 +57,7 @@ const SiteMeta = (props) => {
 
   const canonicalLink = `${site.siteMetadata.siteUrl}/${slug}`
   const metaTitle = seoTitle ? seoTitle : title
-  const siteName = site.siteMetadata.siteUrl
+  const siteName = site.siteMetadata.title
   const siteImage = wp.seo.openGraph.defaultImage.localFile.childImageSharp.fixed.src
   const facebook = wp.seo.social.facebook.url
   const linkedin = wp.seo.social.linkedIn.url

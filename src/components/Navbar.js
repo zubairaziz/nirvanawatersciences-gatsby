@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { NavigationContext } from './Layout'
 import { Link } from 'gatsby'
 
@@ -8,8 +8,22 @@ const Navbar = () => {
     e.preventDefault()
     setNavIsOpen(() => (navIsOpen ? false : true))
   }
+  useEffect(() => {
+    const header = document.querySelector('.header-nav')
+    const sticky = header.offsetTop
+    const scrollCallBack = window.addEventListener('scroll', () => {
+      if (window.pageYOffset > sticky) {
+        header.classList.add('sticky', 'border-b', 'border-gray-200', 'bg-white', 'pb-4')
+      } else {
+        header.classList.remove('sticky', 'border-b', 'border-gray-200', 'bg-white', 'pb-4')
+      }
+    })
+    return () => {
+      window.removeEventListener('scroll', scrollCallBack)
+    }
+  }, [])
   return (
-    <header className="relative top-0 w-full pt-8 header-nav">
+    <header className="relative top-0 z-50 w-full pt-8 header-nav">
       <div className="container">
         <nav className="flex items-center justify-between w-full">
           <Link to="/" aria-label="Home">
@@ -182,23 +196,23 @@ const Navbar = () => {
               />
             </svg>
           </Link>
-          <ul className="flex gap-x-16">
-            <li className="hidden pb-2 md:block">
+          <ul className="flex">
+            <li className="hidden pb-2 md:block md:mx-2 lg:mx-4">
               <Link className="text-blue hover:text-indigo" to="/">
                 Home
               </Link>
             </li>
-            <li className="hidden pb-2 md:block">
+            <li className="hidden pb-2 md:block md:mx-2 lg:mx-4">
               <Link className="text-blue hover:text-indigo" to="/products">
                 Products
               </Link>
             </li>
-            <li className="hidden pb-2 md:block">
+            <li className="hidden pb-2 md:block md:mx-2 lg:mx-4">
               <Link className="text-blue hover:text-indigo" to="/water">
                 The Water
               </Link>
             </li>
-            <li className="hidden pb-2 md:block">
+            <li className="hidden pb-2 md:block md:mx-2 md:mr-4 lg:mx-4 lg:mr-8">
               <Link className="text-blue hover:text-indigo" to="/science">
                 Science
               </Link>
