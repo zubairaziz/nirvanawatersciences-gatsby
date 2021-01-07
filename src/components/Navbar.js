@@ -13,9 +13,9 @@ const Navbar = () => {
     const sticky = header.offsetTop
     const scrollCallBack = window.addEventListener('scroll', () => {
       if (window.pageYOffset > sticky) {
-        header.classList.add('sticky', 'border-b', 'border-gray-200', 'bg-white', 'pb-4')
+        header.classList.add('sticky', 'border-b', 'border-gray-200', 'bg-white')
       } else {
-        header.classList.remove('sticky', 'border-b', 'border-gray-200', 'bg-white', 'pb-4')
+        header.classList.remove('sticky', 'border-b', 'border-gray-200', 'bg-white')
       }
     })
     return () => {
@@ -23,7 +23,7 @@ const Navbar = () => {
     }
   }, [])
   return (
-    <header className="relative top-0 z-50 w-full pt-8 header-nav">
+    <header className="relative top-0 z-50 w-full pt-8 pb-4 header-nav">
       <div className="container">
         <nav className="flex items-center justify-between w-full">
           <Link to="/" aria-label="Home">

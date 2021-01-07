@@ -8,7 +8,7 @@
   }
 }
 
-.button-outline {
+.button-hollow {
   @apply button border-dark-gray text-dark-gray;
 
   &:hover {

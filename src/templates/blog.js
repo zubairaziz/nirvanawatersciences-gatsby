@@ -2,6 +2,7 @@ import * as React from 'react'
 import Layout from '../components/Layout'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
+import SubscribeForm from '../components/SubscribeForm'
 
 // markup
 const BlogPageTemplate = ({ data }) => {
@@ -35,15 +36,7 @@ const BlogPageTemplate = ({ data }) => {
             ) : null}
           </header>
           {page?.content && <div className="richtext" dangerouslySetInnerHTML={{ __html: page.content }} />}
-          <form action="/subscribe" className="flex justify-center w-full py-16 gap-x-4">
-            <label htmlFor="email">
-              email address
-              <input className="border-b border-dark-gray md:w-96" type="email" name="email" id="email" />
-            </label>
-            <button type="submit" className="button-outline">
-              subscribe
-            </button>
-          </form>
+          <SubscribeForm />
           <ol className="grid grid-cols-1 md:grid-cols-2">
             <li className="w-full" key={posts[0]?.node?.id}>
               <Link to={`/blog/${posts[0]?.node?.slug}`}>

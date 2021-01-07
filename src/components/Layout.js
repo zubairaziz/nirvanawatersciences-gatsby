@@ -5,11 +5,13 @@ import Navbar from './Navbar'
 import SiteMeta from './SiteMeta'
 import SiteMenu from './SiteMenu'
 import SiteFooter from './SiteFooter'
+import SubscribeForm from './SubscribeForm'
 
 export const NavigationContext = React.createContext()
 
 const Layout = (props) => {
   const [currentInput, currentIntent] = useWhatInput()
+  console.log(`input: ${currentInput}, intent: ${currentIntent}`)
   const [navIsOpen, setNavIsOpen] = useState(false)
 
   const { title, slug, children, canonical, metaDesc, opengraphSiteName, seoTitle, ogImage } = props
@@ -34,6 +36,10 @@ const Layout = (props) => {
         </NavigationContext.Provider>
         <main id="main-content" className={`${slug}-page`}>
           {children}
+          <div className="container">
+            <h4 className="text-3xl text-center md:text-5xl">subscribe to Nirvana Water Sciences</h4>
+            <SubscribeForm />
+          </div>
         </main>
         <SiteFooter />
       </div>

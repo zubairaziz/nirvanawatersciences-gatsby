@@ -81,6 +81,10 @@ button {
   transition: none !important;
 }
 
+body {
+  @apply text-dark-gray;
+}
+
 .overflow-y-scroll {
   -webkit-overflow-scrolling: touch;
 }

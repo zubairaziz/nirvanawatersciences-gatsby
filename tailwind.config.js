@@ -1,5 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const aspectRatio = require('@tailwindcss/aspect-ratio')
+const forms = require('@tailwindcss/forms')
 
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -14,6 +15,10 @@ module.exports = {
         indigo: '#2F3392',
         'dark-gray': '#4D4D4D',
       },
+      spacing: {
+        108: '27.5rem',
+        120: '30rem',
+      },
     },
   },
   variants: {
@@ -21,5 +26,5 @@ module.exports = {
       animation: ['hover', 'focus'],
     },
   },
-  plugins: [aspectRatio],
+  plugins: [aspectRatio, forms],
 }
