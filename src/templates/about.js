@@ -5,6 +5,7 @@ import { graphql } from 'gatsby'
 // markup
 const IndexPageTemplate = ({ data }) => {
   const page = data.allWpPage.edges[0].node
+  const teamMembers = data.allWpTeamMember.edges
   const { title, slug } = page
   const { seo } = page
   const { canonical, metaDesc, seoTitle } = seo
@@ -30,7 +31,23 @@ const IndexPageTemplate = ({ data }) => {
           </div>
         </section>
 
-        <section className="min-h-screen"></section>
+        <section className="min-h-screen">
+          <div className="container">
+            <div>
+              <h3>our leadership</h3>
+            </div>
+            <div>
+              <ul>
+                {teamMembers.map((member) => (
+                  <li key={member.node.id}>
+                    <div>{member.node.title}</div>
+                    <div>{member.node.acfTeamMember.memberRole}</div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
       </article>
     </Layout>
   )
@@ -53,6 +70,17 @@ export const query = graphql`
             largeHeader
             leadIn
             smallHeader
+          }
+        }
+      }
+    }
+    allWpTeamMember(sort: { order: ASC, fields: date }) {
+      edges {
+        node {
+          id
+          title
+          acfTeamMember {
+            memberRole
           }
         }
       }

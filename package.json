@@ -8,7 +8,7 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "ENABLE_GATSBY_REFRESH_ENDPOINT=1 GATSBY_EXPERIMENTAL_LAZY_DEVJS=true FAST_REFRESH=true gatsby develop",
+    "develop": "ENABLE_GATSBY_REFRESH_ENDPOINT=true GATSBY_EXPERIMENTAL_LAZY_DEVJS=true gatsby develop",
     "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "serve": "gatsby serve",
     "clean": "gatsby clean",

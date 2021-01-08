@@ -9,19 +9,10 @@ const PostTemplate = ({ data }) => {
   const slug = `blog/${post?.slug}`
   const canonical = post?.seo?.canonical
   const metaDesc = post?.seo?.metaDesc
-  const opengraphSiteName = post?.seo?.opengraphSiteName
   const seoTitle = post?.seo?.title
   const ogImage = post?.seo?.opengraphImage?.localFile?.childImageSharp?.fixed?.src
   return (
-    <Layout
-      title={title}
-      slug={slug}
-      canonical={canonical}
-      metaDesc={metaDesc}
-      opengraphSiteName={opengraphSiteName}
-      seoTitle={seoTitle}
-      ogImage={ogImage}
-    >
+    <Layout title={title} slug={slug} canonical={canonical} metaDesc={metaDesc} seoTitle={seoTitle} ogImage={ogImage}>
       <article>
         <h1>{post.title}</h1>
         <div className="richtext" dangerouslySetInnerHTML={{ __html: post.content }} />
@@ -58,7 +49,6 @@ export const query = graphql`
           seo {
             canonical
             metaDesc
-            opengraphSiteName
             title
             opengraphImage {
               link

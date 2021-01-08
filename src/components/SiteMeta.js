@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
 const SiteMeta = (props) => {
-  const { title, slug, canonical, metaDesc, opengraphSiteName, seoTitle, ogImage } = props
+  const { title, slug, canonical, metaDesc, seoTitle, ogImage } = props
   const { site, wp } = useStaticQuery(
     graphql`
       query {
@@ -58,7 +58,7 @@ const SiteMeta = (props) => {
   const canonicalLink = `${site.siteMetadata.siteUrl}/${slug}`
   const metaTitle = seoTitle ? seoTitle : title
   const siteName = site.siteMetadata.title
-  const siteImage = wp.seo.openGraph.defaultImage.localFile.childImageSharp.fixed.src
+  const siteImage = ogImage ? ogImage : wp.seo.openGraph.defaultImage.localFile.childImageSharp.fixed.src
   const facebook = wp.seo.social.facebook.url
   const linkedin = wp.seo.social.linkedIn.url
   const twitter = `https://twitter.com/${wp.seo.social.twitter.username}`

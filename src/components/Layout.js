@@ -11,10 +11,11 @@ export const NavigationContext = React.createContext()
 
 const Layout = (props) => {
   const [currentInput, currentIntent] = useWhatInput()
+  // eslint-disable-next-line no-console
   console.log(`input: ${currentInput}, intent: ${currentIntent}`)
   const [navIsOpen, setNavIsOpen] = useState(false)
 
-  const { title, slug, children, canonical, metaDesc, opengraphSiteName, seoTitle, ogImage } = props
+  const { title, slug, children, canonical, metaDesc, seoTitle, ogImage } = props
   return (
     <div>
       <SiteMeta
@@ -22,7 +23,6 @@ const Layout = (props) => {
         slug={slug}
         canonical={canonical}
         metaDesc={metaDesc}
-        opengraphSiteName={opengraphSiteName}
         seoTitle={seoTitle}
         ogImage={ogImage}
       />
