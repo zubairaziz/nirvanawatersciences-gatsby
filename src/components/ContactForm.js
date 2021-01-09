@@ -1,6 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { useFormik } from 'formik'
+import { useFormik, withFormik } from 'formik'
 import axios from 'axios'
+import Select from 'react-select'
+import * as Yup from 'yup'
+import { states, reasons } from '../data/formData'
+
+const formikEnhancer = withFormik({
+  validationSchema: Yup.object().shape({
+    firstName: Yup.string().required('first name is required'),
+    lastName: Yup.string().required('last name is required'),
+    email: Yup.string().email('invalid email address').required('email is required'),
+    // phone: ,
+    // city: ,
+    // state: ,
+    // zip: ,
+    // reason: ,
+    // distributor: ,
+    // message: ,
+  }),
+  displayName: 'Contact Form',
+})
 
 const ContactForm = () => {
   const WEBSITE_URL = 'http://nirvanawatersciences.local'
@@ -12,6 +31,21 @@ const ContactForm = () => {
   const [formMessage, setFormMessage] = useState('')
   const [isSuccessMessage, setIsSuccessMessage] = useState(false)
   const [messageSent, setMessageSent] = useState(false)
+
+  const dropDownStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      color: state.isSelected ? 'white' : '#4D4D4D',
+      borderBottom: '1px solid #E5E7EB',
+    }),
+    control: () => ({
+      display: 'flex',
+      width: '100%',
+      border: 'none',
+      color: '#4D4D4D',
+      borderBottom: '1px solid #4D4D4D',
+    }),
+  }
 
   useEffect(() => {
     axios({
@@ -33,7 +67,16 @@ const ContactForm = () => {
       })
   }, [])
 
-  const { handleChange, isSubmitting, values, handleSubmit } = useFormik({
+  const {
+    isSubmitting,
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+    handleBlur,
+    setFieldValue,
+    setFieldTouched,
+  } = useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
@@ -52,16 +95,16 @@ const ContactForm = () => {
     ) => {
       setSubmitting(true)
       const bodyFormData = new FormData()
-      bodyFormData.set('email', firstName)
-      bodyFormData.set('email', lastName)
+      bodyFormData.set('first-name', firstName)
+      bodyFormData.set('last-name', lastName)
       bodyFormData.set('email', email)
-      bodyFormData.set('email', phone)
-      bodyFormData.set('email', city)
-      bodyFormData.set('email', state)
-      bodyFormData.set('email', zip)
-      bodyFormData.set('email', reason)
-      bodyFormData.set('email', distributor)
-      bodyFormData.set('email', message)
+      bodyFormData.set('phone', phone)
+      bodyFormData.set('city', city)
+      bodyFormData.set('state', state.value)
+      bodyFormData.set('zip', zip)
+      bodyFormData.set('reason', reason.value)
+      bodyFormData.set('distributor', distributor)
+      bodyFormData.set('message', message)
       axios({
         method: 'post',
         url: `${WEBSITE_URL}/wp-json/contact-form-7/v1/contact-forms/${FORM_ID}/feedback`,
@@ -98,137 +141,176 @@ const ContactForm = () => {
   })
 
   useEffect(() => {
-    // set timeout 3 seconds to remove error/success message.
     setTimeout(() => {
-      // this will reset messageSent and isSuccessMessage state
       setMessageSent(false)
       setIsSuccessMessage(false)
     }, 3000)
-    // this effect function will be dispatched when isSuccessMessage or messageSent changes its state
   }, [isSuccessMessage, messageSent])
+
+  useEffect(() => {
+    if (errors) {
+      // eslint-disable-next-line no-console
+      console.log('Errors', errors)
+    }
+  }, [errors])
 
   return (
     <div className="relative py-4 mb-4 md:py-8 md:mb-8">
-      <form onSubmit={handleSubmit} className="relative">
-        <div>
-          <label htmlFor="firstName" className="sr-only">
-            first name
-          </label>
-          <input
-            className=""
-            id="firstName"
-            name="firstName"
-            type="text"
-            onChange={handleChange}
-            value={values.firstName}
-            placeholder="first name*"
-            required
-          />
+      <form onSubmit={handleSubmit} className="relative" noValidate>
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="w-full p-2">
+            <label htmlFor="firstName" className="sr-only">
+              first name
+            </label>
+            <input
+              className="w-full border-0 border-b rounded-0"
+              id="firstName"
+              name="firstName"
+              type="text"
+              onChange={handleChange}
+              value={values.firstName}
+              placeholder="first name*"
+              required
+            />
+          </div>
+          <div className="w-full p-2">
+            <label className="sr-only" htmlFor="lastName">
+              last name
+            </label>
+            <input
+              className="w-full border-0 border-b rounded-0"
+              id="lastName"
+              name="lastName"
+              type="text"
+              onChange={handleChange}
+              value={values.lastName}
+              placeholder="last name*"
+              required
+            />
+          </div>
+          <div className="w-full p-2">
+            <label className="sr-only" htmlFor="email">
+              email address
+            </label>
+            <input
+              className="w-full border-0 border-b rounded-0"
+              id="email"
+              name="email"
+              type="email"
+              onChange={handleChange}
+              value={values.email}
+              placeholder="email address*"
+              required
+            />
+          </div>
+          <div className="w-full p-2">
+            <label className="sr-only" htmlFor="phone">
+              phone
+            </label>
+            <input
+              className="w-full border-0 border-b rounded-0"
+              id="phone"
+              name="phone"
+              type="text"
+              onChange={handleChange}
+              value={values.phone}
+              placeholder="phone"
+            />
+          </div>
+          <div className="w-full p-2">
+            <label className="sr-only" htmlFor="city">
+              city
+            </label>
+            <input
+              className="w-full border-0 border-b rounded-0"
+              id="city"
+              name="city"
+              type="text"
+              onChange={handleChange}
+              value={values.city}
+              placeholder="city"
+            />
+          </div>
+          <div className="grid w-full grid-cols-1 md:grid-cols-2">
+            <div className="w-full p-2">
+              <label className="sr-only" htmlFor="state">
+                state
+              </label>
+              <Select
+                onChange={(value) => setFieldValue('state', value)}
+                onBlur={() => setFieldTouched('state', true)}
+                value={values.state}
+                placeholder="state"
+                options={states}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 0,
+                  colors: {
+                    ...theme.colors,
+                    primary25: '#F3F4F6',
+                    primary: '#2F3392',
+                  },
+                })}
+                styles={dropDownStyles}
+              />
+            </div>
+            <div className="w-full p-2">
+              <label className="sr-only" htmlFor="zip">
+                zip
+              </label>
+              <input
+                className="w-full border-0 border-b rounded-0"
+                id="zip"
+                name="zip"
+                type="text"
+                onChange={handleChange}
+                value={values.zip}
+                placeholder="zip"
+              />
+            </div>
+          </div>
         </div>
-        <div>
-          <label className="sr-only" htmlFor="lastName">
-            last name
-          </label>
-          <input
-            className=""
-            id="lastName"
-            name="lastName"
-            type="text"
-            onChange={handleChange}
-            value={values.lastName}
-            placeholder="last name*"
-            required
-          />
-        </div>
-        <div>
-          <label className="sr-only" htmlFor="email">
-            email address
-          </label>
-          <input
-            className=""
-            id="email"
-            name="email"
-            type="email"
-            onChange={handleChange}
-            value={values.email}
-            placeholder="email address*"
-            required
-          />
-        </div>
-        <div>
-          <label className="sr-only" htmlFor="phone">
-            phone
-          </label>
-          <input
-            className=""
-            id="phone"
-            name="phone"
-            type="text"
-            onChange={handleChange}
-            value={values.phone}
-            placeholder="phone"
-          />
-        </div>
-        <div>
-          <label className="sr-only" htmlFor="city">
-            city
-          </label>
-          <input
-            className=""
-            id="city"
-            name="city"
-            type="text"
-            onChange={handleChange}
-            value={values.city}
-            placeholder="city"
-          />
-        </div>
-        <div>
-          <label className="sr-only" htmlFor="state">
-            state
-          </label>
-          <input
-            className=""
-            id="state"
-            name="state"
-            type="text"
-            onChange={handleChange}
-            value={values.state}
-            placeholder="state"
-          />
-        </div>
-        <div>
-          <label className="sr-only" htmlFor="zip">
-            zip
-          </label>
-          <input
-            className=""
-            id="zip"
-            name="zip"
-            type="text"
-            onChange={handleChange}
-            value={values.zip}
-            placeholder="zip"
-          />
-        </div>
-        <div>
+        <div className="w-full p-2">
           <label className="sr-only" htmlFor="reason">
             reason
           </label>
-          <input className="" id="reason" name="reason" type="text" onChange={handleChange} value={values.reason} />
+          <Select
+            onChange={(value) => setFieldValue('reason', value)}
+            onBlur={() => setFieldTouched('reason', true)}
+            value={values.reason}
+            placeholder="how can we help you"
+            options={reasons}
+            theme={(theme) => ({
+              ...theme,
+              borderRadius: 0,
+              colors: {
+                ...theme.colors,
+                primary25: '#F3F4F6',
+                primary: '#2F3392',
+              },
+            })}
+            styles={dropDownStyles}
+          />
         </div>
-        <div>
+        <div className="w-full p-2">
           <label htmlFor="distributor">
-            <input type="checkbox" name="distributor" id="distributor" />
+            <input
+              type="checkbox"
+              name="distributor"
+              id="distributor"
+              onChange={handleChange}
+              value={values.distributor}
+            />
             <span>i would like to become a distributor</span>
           </label>
+          <p></p>
         </div>
-        <div>
+        <div className="w-full p-2">
           <label className="sr-only" htmlFor="message">
             message
           </label>
           <textarea
-            className=""
+            className="w-full border-0 border-b rounded-0"
             id="message"
             name="message"
             type="text"
@@ -237,9 +319,11 @@ const ContactForm = () => {
             placeholder="message"
           />
         </div>
-        <button type="submit" className="button-hollow" disabled={isSubmitting}>
-          submit
-        </button>
+        <div>
+          <button type="submit" className="button button-hollow" disabled={isSubmitting}>
+            submit
+          </button>
+        </div>
       </form>
       {messageSent && isSuccessMessage && (
         <div className="absolute bottom-0 left-0 right-0 block w-full text-center">{formMessage}</div>
@@ -251,4 +335,6 @@ const ContactForm = () => {
   )
 }
 
-export default ContactForm
+const EnhancedForm = formikEnhancer(ContactForm)
+
+export default EnhancedForm

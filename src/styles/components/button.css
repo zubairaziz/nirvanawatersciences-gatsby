@@ -12,6 +12,15 @@
   @apply button border-dark-gray text-dark-gray;
 
   &:hover {
-    @apply text-white shadow-sm bg-dark-gray;
+    @apply text-white shadow-sm border-indigo bg-indigo;
   }
+}
+
+.button[disabled] {
+  @apply text-white shadow-sm opacity-75 cursor-not-allowed border-indigo bg-indigo;
+}
+
+.button-loading {
+  @apply text-transparent cursor-wait animate-pulse;
+  opacity: 1;
 }

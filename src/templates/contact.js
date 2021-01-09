@@ -14,29 +14,34 @@ const IndexPageTemplate = ({ data }) => {
 
   return (
     <Layout title={title} slug={slug} canonical={canonical} metaDesc={metaDesc} seoTitle={seoTitle} ogImage={null}>
-      <article>
-        <section className="min-h-screen">
+      <article className="w-screen py-8 overflow-x-hidden">
+        <section className="md:min-h-screen">
           <div className="container">
-            <h1>{smallHeader ? smallHeader : title}</h1>
-            <h2>{largeHeader}</h2>
-            <div>
-              <img
-                src={acfContactPageHeaderImage?.contactPageHeaderImage?.localFile?.childImageSharp?.fluid?.src}
-                alt=""
-              />
-            </div>
+            <header className="flex flex-row pb-16 flex-nowrap">
+              <div className="w-8/12 pr-1">
+                <h1 className="small-header">{smallHeader ? smallHeader : title}</h1>
+                <h2 className="large-header">{largeHeader}</h2>
+              </div>
+              <div className="w-4/12">
+                <img
+                  className="transform scale-150"
+                  src={acfContactPageHeaderImage?.contactPageHeaderImage?.localFile?.childImageSharp?.fluid?.src}
+                  alt=""
+                />
+              </div>
+            </header>
           </div>
           {page.content ? <div className="richtext" dangerouslySetInnerHTML={{ __html: page.content }} /> : null}
         </section>
 
-        <section className="min-h-screen">
+        <section className="">
           <div className="banner">
             <div className="container">
               <div>
-                <div>{acfContactPageContent.contactPageHeader}</div>
+                <p className="pr-4 text-lg leading-none">{acfContactPageContent.contactPageHeader}</p>
                 {acfContactPageContent.contactPageContent ? (
                   <div
-                    className="richtext"
+                    className="pr-4 richtext"
                     dangerouslySetInnerHTML={{ __html: acfContactPageContent.contactPageContent }}
                   />
                 ) : null}
@@ -47,8 +52,6 @@ const IndexPageTemplate = ({ data }) => {
             </div>
           </div>
         </section>
-
-        <section className="min-h-screen"></section>
       </article>
     </Layout>
   )

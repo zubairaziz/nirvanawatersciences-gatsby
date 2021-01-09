@@ -3,10 +3,13 @@ import { useFormik } from 'formik'
 import axios from 'axios'
 
 const SubscribeForm = () => {
-  const WEBSITE_URL = 'http://nirvanawatersciences.local'
-  const USERNAME = 'admin'
-  const PASSWORD = 'password'
-  const FORM_ID = '139'
+  const WEBSITE_URL = process.env.GATSBY_WORDPRESS_URL
+  const ENDPOINT = process.env.GATSBY_NEWSLETTER_API
+  // const CLIENT_KEY = process.env.GATSBY_NEWSLETTER_CLIENT
+  // const SECRET_KEY = process.env.GATSBY_NEWSLETTER_SECRET
+  // const API_KEY = 'nirvanawatersciencessubscribe'
+  const USERNAME = process.env.GATSBY_WORDPRESS_USERNAME
+  const PASSWORD = process.env.GATSBY_WORDPRESS_PASSWORD
 
   const [token, setToken] = useState('')
   const [formMessage, setFormMessage] = useState('')
@@ -29,7 +32,7 @@ const SubscribeForm = () => {
         setToken(response.data.token)
       })
       .catch((error) => {
-        // console.error('Error', error)
+        throw error
       })
   }, [])
 
@@ -39,56 +42,47 @@ const SubscribeForm = () => {
     },
     onSubmit: ({ email }, { setSubmitting, resetForm }) => {
       setSubmitting(true)
-      const bodyFormData = new FormData()
-      bodyFormData.set('email', email)
+      const formData = {
+        email,
+        status: 'confirmed',
+        // api_key: API_KEY,
+      }
 
       axios({
         method: 'post',
-        url: `${WEBSITE_URL}/wp-json/contact-form-7/v1/contact-forms/${FORM_ID}/feedback`,
-        data: bodyFormData,
+        url: `${WEBSITE_URL}${ENDPOINT}subscribers`,
+        data: formData,
         headers: {
           Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
         },
       })
         .then((response) => {
-          // actions taken when submission goes OK
           resetForm()
           setSubmitting(false)
           setMessageSent(true)
-          if (response.data.invalid_fields) {
-            setFormMessage(response.data?.invalid_fields[0]?.message)
-          } else {
-            setFormMessage(response.data.message)
-          }
+          setFormMessage('You are now subscribed to Nirvana Water Sciences')
           setIsSuccessMessage(true)
         })
         .catch((error) => {
-          // actions taken when submission goes wrong
           setSubmitting(false)
           setMessageSent(true)
-          if (error.invalid_fields) {
-            setFormMessage(error?.invalid_fields[0]?.message)
-          } else {
-            setFormMessage(error.message)
-          }
+          setFormMessage('You are already subscribed to Nirvana Water Sciences')
           setIsSuccessMessage(false)
+          throw error
         })
     },
   })
 
   useEffect(() => {
-    // set timeout 3 seconds to remove error/success message.
     setTimeout(() => {
-      // this will reset messageSent and isSuccessMessage state
       setMessageSent(false)
       setIsSuccessMessage(false)
     }, 3000)
-    // this effect function will be dispatched when isSuccessMessage or messageSent changes its state
   }, [isSuccessMessage, messageSent])
 
   return (
-    <div className="relative py-4 mb-4 md:py-8 md:mb-8">
+    <div className="relative hidden py-4 mb-4 md:py-8 md:mb-8 md:block">
       <form onSubmit={handleSubmit} className="relative flex items-center justify-center w-full gap-x-4">
         <label htmlFor="email">email address</label>
         <input
@@ -100,7 +94,7 @@ const SubscribeForm = () => {
           value={values.email}
           required
         />
-        <button type="submit" className="button-hollow" disabled={isSubmitting}>
+        <button type="submit" className="button button-hollow" disabled={isSubmitting}>
           subscribe
         </button>
       </form>

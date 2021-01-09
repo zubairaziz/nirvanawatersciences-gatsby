@@ -1,6 +1,6 @@
 const dotenv = require(`dotenv`)
 dotenv.config()
-const wordpressURL = process.env.WORDPRESS_URL
+const wordpressURL = process.env.GATSBY_WORDPRESS_URL
 
 module.exports = {
   siteMetadata: {

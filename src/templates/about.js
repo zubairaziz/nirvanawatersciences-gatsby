@@ -9,8 +9,19 @@ const IndexPageTemplate = ({ data }) => {
   const { title, slug } = page
   const { seo } = page
   const { canonical, metaDesc, seoTitle } = seo
-  const { acfPageHeader } = page
+  const { acfPageHeader, acfAboutContent } = page
   const { smallHeader, largeHeader } = acfPageHeader
+  const {
+    aboutFeaturedImage,
+    aboutPanel1Content,
+    aboutPanel1Header,
+    aboutPanel2Content,
+    aboutPanel2Header,
+    aboutPanel2Image1,
+    aboutPanel2Image2,
+    aboutPanel2Image3,
+    aboutPanel2Image4,
+  } = acfAboutContent
 
   return (
     <Layout title={title} slug={slug} canonical={canonical} metaDesc={metaDesc} seoTitle={seoTitle} ogImage={null}>
@@ -23,12 +34,38 @@ const IndexPageTemplate = ({ data }) => {
           {page.content ? <div className="richtext" dangerouslySetInnerHTML={{ __html: page.content }} /> : null}
         </section>
 
+        <img src={aboutFeaturedImage.localFile.childImageSharp.fluid.src} alt="" />
+
         <section className="min-h-screen">
-          <div className="banner">
-            <div className="container">
-              <p></p>
+          <div className="container">
+            <h3>{aboutPanel1Header}</h3>
+            <p>{aboutPanel1Content}</p>
+          </div>
+        </section>
+
+        <section className="min-h-screen">
+          <div className="container">
+            <div>
+              <h3>{aboutPanel2Header}</h3>
+            </div>
+            <div>
+              <div className="richtext" dangerouslySetInnerHTML={{ __html: aboutPanel2Content }} />
             </div>
           </div>
+          <ul>
+            <li>
+              <img src={aboutPanel2Image1.localFile.childImageSharp.fluid.src} alt="" />
+            </li>
+            <li>
+              <img src={aboutPanel2Image2.localFile.childImageSharp.fluid.src} alt="" />
+            </li>
+            <li>
+              <img src={aboutPanel2Image3.localFile.childImageSharp.fluid.src} alt="" />
+            </li>
+            <li>
+              <img src={aboutPanel2Image4.localFile.childImageSharp.fluid.src} alt="" />
+            </li>
+          </ul>
         </section>
 
         <section className="min-h-screen">
@@ -70,6 +107,57 @@ export const query = graphql`
             largeHeader
             leadIn
             smallHeader
+          }
+          acfAboutContent {
+            aboutFeaturedImage {
+              localFile {
+                childImageSharp {
+                  fluid {
+                    src
+                  }
+                }
+              }
+            }
+            aboutPanel1Header
+            aboutPanel1Content
+            aboutPanel2Header
+            aboutPanel2Content
+            aboutPanel2Image1 {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 1000) {
+                    src
+                  }
+                }
+              }
+            }
+            aboutPanel2Image2 {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 1000) {
+                    src
+                  }
+                }
+              }
+            }
+            aboutPanel2Image3 {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 1000) {
+                    src
+                  }
+                }
+              }
+            }
+            aboutPanel2Image4 {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 1000) {
+                    src
+                  }
+                }
+              }
+            }
           }
         }
       }

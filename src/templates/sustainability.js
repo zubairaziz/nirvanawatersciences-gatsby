@@ -6,31 +6,72 @@ import { graphql } from 'gatsby'
 const IndexPageTemplate = ({ data }) => {
   const page = data.allWpPage.edges[0].node
   const { title, slug } = page
-  const { seo } = page
+  const { seo, acfPageHeader, acfSustainabilityContent } = page
   const { canonical, metaDesc, seoTitle } = seo
-  const { acfPageHeader } = page
-  const { smallHeader, largeHeader } = acfPageHeader
+  const { smallHeader, largeHeader, leadIn } = acfPageHeader
+  const {
+    sustainabilityHeaderLargeImage,
+    sustainabilityHeaderSmallImage,
+    sustainabilityPanel1Image,
+    sustainabilityPanel1Title,
+    sustainabilityPanel1Subhead,
+    sustainabilityPanel1Content,
+    sustainabilityPanel2Icon,
+    sustainabilityPanel2Image,
+    sustainabilityPanel2Title,
+    sustainabilityPanel2Subhead,
+    sustainabilityPanel2Content,
+    sustainabilityPanel3Title,
+    sustainabilityPanel3Subhead,
+    sustainabilityPanel3Content,
+    sustainabilityPanel3Icon,
+    sustainabilityPanel3Image,
+  } = acfSustainabilityContent
 
   return (
     <Layout title={title} slug={slug} canonical={canonical} metaDesc={metaDesc} seoTitle={seoTitle} ogImage={null}>
       <article>
         <section className="min-h-screen">
           <div className="container">
-            <h1>{smallHeader ? smallHeader : title}</h1>
-            <h2>{largeHeader}</h2>
+            <h1>
+              {smallHeader ? smallHeader : title}
+              <span>{largeHeader}</span>
+            </h1>
+            <div className="richtext" dangerouslySetInnerHTML={{ __html: leadIn }} />{' '}
           </div>
+          <img src={sustainabilityHeaderLargeImage.localFile.childImageSharp.fluid.src} alt="" />
+          <img src={sustainabilityHeaderSmallImage.localFile.childImageSharp.fluid.src} alt="" />
           {page.content ? <div className="richtext" dangerouslySetInnerHTML={{ __html: page.content }} /> : null}
         </section>
 
         <section className="min-h-screen">
-          <div className="banner">
-            <div className="container">
-              <p></p>
-            </div>
+          <img src={sustainabilityPanel1Image.localFile.childImageSharp.fluid.src} alt="" />
+          <div className="container">
+            <h2>{sustainabilityPanel1Title}</h2>
+            <h3>{sustainabilityPanel1Subhead}</h3>
+            <div className="richtext" dangerouslySetInnerHTML={{ __html: sustainabilityPanel1Content }} />
           </div>
         </section>
 
-        <section className="min-h-screen"></section>
+        <section className="min-h-screen">
+          <img src={sustainabilityPanel2Icon.localFile.publicURL} alt="" />
+          <img src={sustainabilityPanel2Image.localFile.childImageSharp.fluid.src} alt="" />
+          <div className="container">
+            <h2>{sustainabilityPanel2Title}</h2>
+            <h3>{sustainabilityPanel2Subhead}</h3>
+            <div className="richtext" dangerouslySetInnerHTML={{ __html: sustainabilityPanel2Content }} />
+          </div>
+        </section>
+
+        <section className="min-h-screen">
+          <img src={sustainabilityPanel3Icon.localFile.publicURL} alt="" />
+          <img src={sustainabilityPanel3Image.localFile.childImageSharp.fluid.src} alt="" />
+          <div className="container">
+            <h2>{sustainabilityPanel3Title}</h2>
+            <h3>{sustainabilityPanel3Subhead}</h3>
+            <div className="richtext" dangerouslySetInnerHTML={{ __html: sustainabilityPanel3Content }} />
+          </div>
+        </section>
       </article>
     </Layout>
   )
@@ -50,9 +91,75 @@ export const query = graphql`
             title
           }
           acfPageHeader {
+            smallHeader
             largeHeader
             leadIn
-            smallHeader
+          }
+          acfSustainabilityContent {
+            sustainabilityHeaderLargeImage {
+              localFile {
+                childImageSharp {
+                  fluid {
+                    src
+                  }
+                }
+              }
+            }
+            sustainabilityHeaderSmallImage {
+              localFile {
+                childImageSharp {
+                  fluid {
+                    src
+                  }
+                }
+              }
+            }
+            sustainabilityPanel1Image {
+              localFile {
+                childImageSharp {
+                  fluid {
+                    src
+                  }
+                }
+              }
+            }
+            sustainabilityPanel1Subhead
+            sustainabilityPanel1Title
+            sustainabilityPanel1Content
+            sustainabilityPanel2Icon {
+              localFile {
+                publicURL
+              }
+            }
+            sustainabilityPanel2Image {
+              localFile {
+                childImageSharp {
+                  fluid {
+                    src
+                  }
+                }
+              }
+            }
+            sustainabilityPanel2Content
+            sustainabilityPanel2Subhead
+            sustainabilityPanel2Title
+            sustainabilityPanel3Title
+            sustainabilityPanel3Subhead
+            sustainabilityPanel3Content
+            sustainabilityPanel3Icon {
+              localFile {
+                publicURL
+              }
+            }
+            sustainabilityPanel3Image {
+              localFile {
+                childImageSharp {
+                  fluid {
+                    src
+                  }
+                }
+              }
+            }
           }
         }
       }

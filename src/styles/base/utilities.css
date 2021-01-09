@@ -5,6 +5,24 @@ body {
   }
 }
 
+.small-header {
+  font-size: 20px;
+  line-height: 1;
+
+  @screen md {
+    font-size: 45px;
+  }
+}
+
+.large-header {
+  font-size: 25px;
+  line-height: 1.1;
+
+  @screen md {
+    font-size: 80px;
+  }
+}
+
 .richtext {
   h1,
   h2,
@@ -64,9 +82,13 @@ body {
   }
 
   p {
-    @apply my-3;
+    @apply my-4 text-sm leading-tight;
 
     @screen md {
+      @apply text-base leading-snug;
+    }
+
+    @screen lg {
       @apply text-lg;
     }
   }
