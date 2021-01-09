@@ -36,7 +36,7 @@ const Layout = (props) => {
         </NavigationContext.Provider>
         <main id="main-content" className={`${slug}-page`}>
           {children}
-          <div className="container">
+          <div className="container pt-8 md:pt-20">
             <h4 className="text-3xl text-center md:text-5xl">subscribe to Nirvana Water Sciences</h4>
             <SubscribeForm />
           </div>

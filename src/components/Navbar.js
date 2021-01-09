@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { NavigationContext } from './Layout'
-import { Link } from 'gatsby'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 const Navbar = () => {
   const [navIsOpen, setNavIsOpen] = useContext(NavigationContext)
@@ -26,7 +26,7 @@ const Navbar = () => {
     <header className="relative top-0 z-50 w-full pt-8 pb-4 header-nav">
       <div className="container">
         <nav className="flex items-center justify-between w-full">
-          <Link to="/" aria-label="Home">
+          <AniLink fade to="/" aria-label="Home">
             <span className="sr-only">Home</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -195,27 +195,27 @@ const Navbar = () => {
                 clipRule="evenodd"
               />
             </svg>
-          </Link>
+          </AniLink>
           <ul className="flex">
             <li className="hidden pb-2 md:block md:mx-2 lg:mx-4">
-              <Link className="text-blue hover:text-indigo" to="/">
+              <AniLink fade className="text-blue hover:text-indigo" to="/">
                 Home
-              </Link>
+              </AniLink>
             </li>
             <li className="hidden pb-2 md:block md:mx-2 lg:mx-4">
-              <Link className="text-blue hover:text-indigo" to="/products">
+              <AniLink fade className="text-blue hover:text-indigo" to="/products">
                 Products
-              </Link>
+              </AniLink>
             </li>
             <li className="hidden pb-2 md:block md:mx-2 lg:mx-4">
-              <Link className="text-blue hover:text-indigo" to="/water">
+              <AniLink fade className="text-blue hover:text-indigo" to="/water">
                 The Water
-              </Link>
+              </AniLink>
             </li>
             <li className="hidden pb-2 md:block md:mx-2 md:mr-4 lg:mx-4 lg:mr-8">
-              <Link className="text-blue hover:text-indigo" to="/science">
+              <AniLink fade className="text-blue hover:text-indigo" to="/science">
                 Science
-              </Link>
+              </AniLink>
             </li>
             <li>
               <button onClick={handleButtonPress} aria-label="Menu">

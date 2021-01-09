@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { Link, StaticQuery, graphql } from 'gatsby'
+import { StaticQuery, graphql } from 'gatsby'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 const SiteMenu = () => (
   <StaticQuery
@@ -29,9 +30,9 @@ const SiteMenu = () => (
             {data &&
               data?.allWpMenu?.edges[0]?.node?.menuItems?.nodes.map((item) => (
                 <li className="mb-5" key={item.url}>
-                  <Link className="hover:underline" to={item.url}>
+                  <AniLink fade className="hover:underline" to={item.url}>
                     {item.label}
-                  </Link>
+                  </AniLink>
                 </li>
               ))}
           </ul>

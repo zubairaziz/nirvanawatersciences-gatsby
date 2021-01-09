@@ -63,20 +63,11 @@ const ContactForm = () => {
         setToken(response.data.token)
       })
       .catch((error) => {
-        // console.error('Error', error)
+        throw error
       })
   }, [])
 
-  const {
-    isSubmitting,
-    values,
-    errors,
-    handleChange,
-    handleSubmit,
-    handleBlur,
-    setFieldValue,
-    setFieldTouched,
-  } = useFormik({
+  const { isSubmitting, values, errors, handleChange, handleSubmit, setFieldValue, setFieldTouched } = useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
@@ -156,14 +147,20 @@ const ContactForm = () => {
 
   return (
     <div className="relative py-4 mb-4 md:py-8 md:mb-8">
+      <p className="pb-4 md:pl-2">(*) indicates required fields</p>
       <form onSubmit={handleSubmit} className="relative" noValidate>
         <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="w-full p-2">
+          <div
+            className="w-full py-2 md:p-2"
+            data-sal="slide-up"
+            data-sal-duration="500"
+            data-sal-easing="easeInOutBack"
+          >
             <label htmlFor="firstName" className="sr-only">
               first name
             </label>
             <input
-              className="w-full border-0 border-b rounded-0"
+              className="w-full border-0 border-b rounded-0 focus:ring-0"
               id="firstName"
               name="firstName"
               type="text"
@@ -173,12 +170,17 @@ const ContactForm = () => {
               required
             />
           </div>
-          <div className="w-full p-2">
+          <div
+            className="w-full py-2 md:p-2"
+            data-sal="slide-up"
+            data-sal-duration="500"
+            data-sal-easing="easeInOutBack"
+          >
             <label className="sr-only" htmlFor="lastName">
               last name
             </label>
             <input
-              className="w-full border-0 border-b rounded-0"
+              className="w-full border-0 border-b rounded-0 focus:ring-0"
               id="lastName"
               name="lastName"
               type="text"
@@ -188,12 +190,17 @@ const ContactForm = () => {
               required
             />
           </div>
-          <div className="w-full p-2">
+          <div
+            className="w-full py-2 md:p-2"
+            data-sal="slide-up"
+            data-sal-duration="500"
+            data-sal-easing="easeInOutBack"
+          >
             <label className="sr-only" htmlFor="email">
               email address
             </label>
             <input
-              className="w-full border-0 border-b rounded-0"
+              className="w-full border-0 border-b rounded-0 focus:ring-0"
               id="email"
               name="email"
               type="email"
@@ -203,12 +210,17 @@ const ContactForm = () => {
               required
             />
           </div>
-          <div className="w-full p-2">
+          <div
+            className="w-full py-2 md:p-2"
+            data-sal="slide-up"
+            data-sal-duration="500"
+            data-sal-easing="easeInOutBack"
+          >
             <label className="sr-only" htmlFor="phone">
               phone
             </label>
             <input
-              className="w-full border-0 border-b rounded-0"
+              className="w-full border-0 border-b rounded-0 focus:ring-0"
               id="phone"
               name="phone"
               type="text"
@@ -217,12 +229,17 @@ const ContactForm = () => {
               placeholder="phone"
             />
           </div>
-          <div className="w-full p-2">
+          <div
+            className="w-full py-2 md:p-2"
+            data-sal="slide-up"
+            data-sal-duration="500"
+            data-sal-easing="easeInOutBack"
+          >
             <label className="sr-only" htmlFor="city">
               city
             </label>
             <input
-              className="w-full border-0 border-b rounded-0"
+              className="w-full border-0 border-b rounded-0 focus:ring-0"
               id="city"
               name="city"
               type="text"
@@ -232,7 +249,12 @@ const ContactForm = () => {
             />
           </div>
           <div className="grid w-full grid-cols-1 md:grid-cols-2">
-            <div className="w-full p-2">
+            <div
+              className="w-full py-2 md:p-2"
+              data-sal="slide-up"
+              data-sal-duration="500"
+              data-sal-easing="easeInOutBack"
+            >
               <label className="sr-only" htmlFor="state">
                 state
               </label>
@@ -254,12 +276,17 @@ const ContactForm = () => {
                 styles={dropDownStyles}
               />
             </div>
-            <div className="w-full p-2">
+            <div
+              className="w-full py-2 md:p-2"
+              data-sal="slide-up"
+              data-sal-duration="500"
+              data-sal-easing="easeInOutBack"
+            >
               <label className="sr-only" htmlFor="zip">
                 zip
               </label>
               <input
-                className="w-full border-0 border-b rounded-0"
+                className="w-full border-0 border-b rounded-0 focus:ring-0"
                 id="zip"
                 name="zip"
                 type="text"
@@ -270,7 +297,7 @@ const ContactForm = () => {
             </div>
           </div>
         </div>
-        <div className="w-full p-2">
+        <div className="w-full py-2 md:p-2" data-sal="slide-up" data-sal-duration="500" data-sal-easing="easeInOutBack">
           <label className="sr-only" htmlFor="reason">
             reason
           </label>
@@ -292,7 +319,7 @@ const ContactForm = () => {
             styles={dropDownStyles}
           />
         </div>
-        <div className="w-full p-2">
+        <div className="w-full py-2 md:p-2" data-sal="slide-up" data-sal-duration="500" data-sal-easing="easeInOutBack">
           <label htmlFor="distributor">
             <input
               type="checkbox"
@@ -301,26 +328,35 @@ const ContactForm = () => {
               onChange={handleChange}
               value={values.distributor}
             />
-            <span>i would like to become a distributor</span>
+            <span className="ml-3">i would like to become a distributor</span>
           </label>
           <p></p>
         </div>
-        <div className="w-full p-2">
+        <div className="w-full py-2 md:p-2" data-sal="slide-up" data-sal-duration="500" data-sal-easing="easeInOutBack">
           <label className="sr-only" htmlFor="message">
             message
           </label>
           <textarea
-            className="w-full border-0 border-b rounded-0"
+            className="w-full border-0 border-b rounded-0 focus:ring-0"
             id="message"
             name="message"
             type="text"
             onChange={handleChange}
             value={values.message}
             placeholder="message"
+            rows={5}
           />
         </div>
-        <div>
-          <button type="submit" className="button button-hollow" disabled={isSubmitting}>
+        <div className="md:pl-2 md:pt-2">
+          <button
+            type="submit"
+            className="button button-hollow"
+            disabled={isSubmitting}
+            data-sal="slide-up"
+            data-sal-delay="300"
+            data-sal-duration="500"
+            data-sal-easing="easeInOutBack"
+          >
             submit
           </button>
         </div>

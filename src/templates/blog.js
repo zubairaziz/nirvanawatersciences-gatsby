@@ -3,6 +3,7 @@ import Layout from '../components/Layout'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 import SubscribeForm from '../components/SubscribeForm'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 // markup
 const BlogPageTemplate = ({ data }) => {
@@ -30,7 +31,7 @@ const BlogPageTemplate = ({ data }) => {
           <SubscribeForm />
           <ol className="grid grid-cols-1 md:grid-cols-2">
             <li className="w-full" key={posts[0]?.node?.id}>
-              <Link to={`/blog/${posts[0]?.node?.slug}`}>
+              <AniLink fade to={`/blog/${posts[0]?.node?.slug}`}>
                 <Img
                   className="w-full aspect-w-16 aspect-h-9"
                   fluid={posts[0]?.node?.acfFeaturedImage?.featuredImage?.localFile?.childImageSharp.fluid}
@@ -38,11 +39,13 @@ const BlogPageTemplate = ({ data }) => {
                   Tag="figure"
                   imgStyle={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                 />
-              </Link>
-              <Link to={`/blog/${posts[0]?.node?.slug}`}>{posts[0]?.node?.title}</Link>
+              </AniLink>
+              <AniLink fade to={`/blog/${posts[0]?.node?.slug}`}>
+                {posts[0]?.node?.title}
+              </AniLink>
             </li>
             <li key={posts[1]?.node?.id}>
-              <Link to={`/blog/${posts[1]?.node?.slug}`}>
+              <AniLink fade to={`/blog/${posts[1]?.node?.slug}`}>
                 <Img
                   className="w-full aspect-w-16 aspect-h-9"
                   fluid={posts[1]?.node?.acfFeaturedImage?.featuredImage?.localFile?.childImageSharp.fluid}
@@ -50,14 +53,16 @@ const BlogPageTemplate = ({ data }) => {
                   Tag="figure"
                   imgStyle={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                 />
-              </Link>
-              <Link to={`/blog/${posts[1]?.node?.slug}`}>{posts[1]?.node?.title}</Link>
+              </AniLink>
+              <AniLink fade to={`/blog/${posts[1]?.node?.slug}`}>
+                {posts[1]?.node?.title}
+              </AniLink>
             </li>
           </ol>
           <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
               <li key={post.node.id}>
-                <Link to={`/blog/${post?.node?.slug}`}>
+                <AniLink fade to={`/blog/${post?.node?.slug}`}>
                   <Img
                     className="w-full aspect-w-16 aspect-h-9"
                     fluid={post?.node?.acfFeaturedImage?.featuredImage?.localFile?.childImageSharp.fluid}
@@ -65,8 +70,10 @@ const BlogPageTemplate = ({ data }) => {
                     Tag="figure"
                     imgStyle={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                   />
-                </Link>
-                <Link to={`/blog/${post?.node?.slug}`}>{post?.node?.title}</Link>
+                </AniLink>
+                <AniLink fade to={`/blog/${post?.node?.slug}`}>
+                  {post?.node?.title}
+                </AniLink>
               </li>
             ))}
           </ol>

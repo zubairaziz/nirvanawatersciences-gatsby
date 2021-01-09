@@ -1,38 +1,39 @@
 import * as React from 'react'
-import { Link } from 'gatsby'
+// import { Link } from 'gatsby'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 const FooterSecondaryMenu = () => (
   <div>
     <ul>
       <li className="mb-5">
-        <Link className="hover:underline" to="/contact?become-a-reseller">
+        <AniLink fade className="hover:underline" to="/contact?become-a-reseller">
           Become A Reseller
-        </Link>
+        </AniLink>
       </li>
       <li className="mb-5">
-        <Link className="hover:underline" to="/locator">
+        <AniLink fade className="hover:underline" to="/locator">
           Locator
-        </Link>
+        </AniLink>
       </li>
       <li className="mb-5">
-        <Link className="hover:underline" to="/contact">
+        <AniLink fade className="hover:underline" to="/contact">
           Contact
-        </Link>
+        </AniLink>
       </li>
       <li className="mb-5">
-        <Link className="hover:underline" to="/blog?news">
+        <AniLink fade className="hover:underline" to="/blog?news">
           Newsroom
-        </Link>
+        </AniLink>
       </li>
       <li className="mb-5">
-        <Link className="hover:underline" to="/blog">
+        <AniLink fade className="hover:underline" to="/blog">
           Blog
-        </Link>
+        </AniLink>
       </li>
       <li className="mb-5">
-        <Link className="hover:underline" to="/contact?private-labeling">
+        <AniLink fade className="hover:underline" to="/contact?private-labeling">
           Private Labeling
-        </Link>
+        </AniLink>
       </li>
     </ul>
   </div>

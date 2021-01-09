@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
-import { Link, StaticQuery, graphql } from 'gatsby'
+import { StaticQuery, graphql } from 'gatsby'
 import { NavigationContext } from './Layout'
 import { motion } from 'framer-motion'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 const variants = {
   open: () => ({
@@ -311,12 +312,13 @@ const SiteMenu = () => {
                             exit={{ opacity: 0 }}
                             className="mb-3"
                           >
-                            <Link
+                            <AniLink
+                              fade
                               className="relative z-50 text-2xl tracking-widest lowercase md:text-3xl hover:underline"
                               to={item.url}
                             >
                               {item.label}
-                            </Link>
+                            </AniLink>
                           </motion.li>
                         ))}
                     </motion.ul>
