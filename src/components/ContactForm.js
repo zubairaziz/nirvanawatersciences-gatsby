@@ -280,7 +280,7 @@ const ContactForm = () => {
                 id="mobile_state"
                 name="mobile_state"
               >
-                <option value="" selected disabled>
+                <option value="" disabled defaultValue={true}>
                   state
                 </option>
                 {states.map((state) => (
@@ -346,7 +346,7 @@ const ContactForm = () => {
             id="mobile_reason"
             name="mobile_reason"
           >
-            <option value="" selected disabled>
+            <option value="" disabled defaultValue={true}>
               how can we help you?
             </option>
             {reasons.map((reason) => (

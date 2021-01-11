@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useFormik } from 'formik'
 import axios from 'axios'
+import { ModalContext } from './Layout'
 
 const SubscribeForm = () => {
   const WEBSITE_URL = process.env.GATSBY_WORDPRESS_URL
@@ -12,6 +13,12 @@ const SubscribeForm = () => {
   const [formMessage, setFormMessage] = useState('')
   const [isSuccessMessage, setIsSuccessMessage] = useState(false)
   const [messageSent, setMessageSent] = useState(false)
+  const [modalIsOpen, setModalIsOpen] = useContext(ModalContext)
+
+  const handleButtonPress = (e) => {
+    e.preventDefault()
+    setModalIsOpen(() => (modalIsOpen ? false : true))
+  }
 
   useEffect(() => {
     axios({
@@ -79,29 +86,36 @@ const SubscribeForm = () => {
   }, [isSuccessMessage, messageSent])
 
   return (
-    <div className="relative hidden py-4 mb-4 md:py-8 md:mb-8 md:block">
-      <form onSubmit={handleSubmit} className="relative flex items-center justify-center w-full gap-x-4">
-        <label htmlFor="subscribe_email">email address</label>
-        <input
-          className="py-0 border-0 border-b border-dark-gray md:w-96 lg:w-120 focus:ring-0"
-          id="subscribe_email"
-          name="subscribe_email"
-          type="email"
-          onChange={handleChange}
-          value={values.email}
-          required
-        />
-        <button type="submit" className="button button-hollow" disabled={isSubmitting}>
+    <>
+      <div className="relative py-4 mb-4 md:py-8 md:mb-8 md:hidden">
+        <button onClick={handleButtonPress} className="button button-hollow">
           subscribe
         </button>
-      </form>
-      {messageSent && isSuccessMessage && (
-        <div className="absolute bottom-0 left-0 right-0 block w-full text-center">{formMessage}</div>
-      )}
-      {messageSent && !isSuccessMessage && (
-        <div className="absolute bottom-0 left-0 right-0 block w-full text-center">{formMessage}</div>
-      )}
-    </div>
+      </div>
+      <div className="relative hidden py-4 mb-4 md:py-8 md:mb-8 md:block">
+        <form onSubmit={handleSubmit} className="relative flex items-center justify-center w-full gap-x-4">
+          <label htmlFor="subscribe_email">email address</label>
+          <input
+            className="py-0 border-0 border-b border-dark-gray md:w-96 lg:w-120 focus:ring-0"
+            id="subscribe_email"
+            name="subscribe_email"
+            type="email"
+            onChange={handleChange}
+            value={values.email}
+            required
+          />
+          <button type="submit" className="button button-hollow" disabled={isSubmitting}>
+            subscribe
+          </button>
+        </form>
+        {messageSent && isSuccessMessage && (
+          <div className="absolute bottom-0 left-0 right-0 block w-full text-center">{formMessage}</div>
+        )}
+        {messageSent && !isSuccessMessage && (
+          <div className="absolute bottom-0 left-0 right-0 block w-full text-center">{formMessage}</div>
+        )}
+      </div>
+    </>
   )
 }
 

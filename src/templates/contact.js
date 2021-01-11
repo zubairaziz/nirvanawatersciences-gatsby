@@ -2,7 +2,7 @@ import * as React from 'react'
 import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
 import ContactForm from '../components/ContactForm'
-import { formatPhoneNumber, cleanPhoneNumber } from '../utils/utils'
+import { formatPhoneNumber, cleanPhoneNumber } from '../utils/utils.ts'
 import Img from 'gatsby-image'
 
 // markup
@@ -62,8 +62,8 @@ const IndexPageTemplate = ({ data }) => {
 
         <section className="md:pb-16">
           <div className="container">
-            <div className="md:flex md:flex-row md:flex-nowrap">
-              <div className="md:pr-16 md:pt-8 md:w-5/12">
+            <div className="lg:flex lg:flex-row lg:flex-nowrap">
+              <div className="lg:pr-16 lg:pt-8 lg:w-5/12">
                 <p
                   className="pr-4 text-lg leading-none md:text-3xl"
                   data-sal="slide-right"
@@ -121,7 +121,7 @@ const IndexPageTemplate = ({ data }) => {
                   </div>
                 </address>
               </div>
-              <div className="border-black md:border-l-2 md:pl-16 md:w-7/12">
+              <div className="border-black lg:border-l-2 lg:pl-16 lg:w-7/12">
                 <ContactForm />
               </div>
             </div>
