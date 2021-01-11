@@ -67,7 +67,16 @@ const ContactForm = () => {
       })
   }, [])
 
-  const { isSubmitting, values, errors, handleChange, handleSubmit, setFieldValue, setFieldTouched } = useFormik({
+  const {
+    isSubmitting,
+    values,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    setFieldValue,
+    setFieldTouched,
+  } = useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
@@ -165,6 +174,7 @@ const ContactForm = () => {
               name="firstName"
               type="text"
               onChange={handleChange}
+              onBlur={handleBlur}
               value={values.firstName}
               placeholder="first name*"
               required
@@ -185,6 +195,7 @@ const ContactForm = () => {
               name="lastName"
               type="text"
               onChange={handleChange}
+              onBlur={handleBlur}
               value={values.lastName}
               placeholder="last name*"
               required
@@ -205,6 +216,7 @@ const ContactForm = () => {
               name="email"
               type="email"
               onChange={handleChange}
+              onBlur={handleBlur}
               value={values.email}
               placeholder="email address*"
               required
@@ -225,6 +237,7 @@ const ContactForm = () => {
               name="phone"
               type="text"
               onChange={handleChange}
+              onBlur={handleBlur}
               value={values.phone}
               placeholder="phone"
             />
@@ -244,6 +257,7 @@ const ContactForm = () => {
               name="city"
               type="text"
               onChange={handleChange}
+              onBlur={handleBlur}
               value={values.city}
               placeholder="city"
             />
@@ -255,15 +269,36 @@ const ContactForm = () => {
               data-sal-duration="500"
               data-sal-easing="easeInOutBack"
             >
-              <label className="sr-only" htmlFor="state">
+              <label className="sr-only md:hidden" htmlFor="mobile_state">
+                state
+              </label>
+              <select
+                className="w-full border-0 border-b rounded-0 focus:ring-0 md:hidden"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.state}
+                id="mobile_state"
+                name="mobile_state"
+              >
+                <option value="" selected disabled>
+                  state
+                </option>
+                {states.map((state) => (
+                  <option key={state.value} value={state.value}>
+                    {state.label}
+                  </option>
+                ))}
+              </select>
+              <label className="hidden sr-only md:block" htmlFor="state">
                 state
               </label>
               <Select
+                className="hidden md:block"
                 onChange={(value) => setFieldValue('state', value)}
                 onBlur={() => setFieldTouched('state', true)}
                 value={values.state}
                 placeholder="state"
-                id="state"
+                inputId="state"
                 name="state"
                 options={states}
                 theme={(theme) => ({
@@ -300,16 +335,37 @@ const ContactForm = () => {
           </div>
         </div>
         <div className="w-full py-2 md:p-2" data-sal="slide-up" data-sal-duration="500" data-sal-easing="easeInOutBack">
-          <label className="sr-only" htmlFor="reason">
+          <label className="sr-only md:hidden" htmlFor="mobile_reason">
+            reason
+          </label>
+          <select
+            className="w-full border-0 border-b rounded-0 focus:ring-0 md:hidden"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.reason}
+            id="mobile_reason"
+            name="mobile_reason"
+          >
+            <option value="" selected disabled>
+              how can we help you?
+            </option>
+            {reasons.map((reason) => (
+              <option key={reason.value} value={reason.value}>
+                {reason.label}
+              </option>
+            ))}
+          </select>
+          <label className="hidden sr-only md:block" htmlFor="reason">
             reason
           </label>
           <Select
+            className="hidden md:block"
             onChange={(value) => setFieldValue('reason', value)}
             onBlur={() => setFieldTouched('reason', true)}
             value={values.reason}
-            id="reason"
+            inputId="reason"
             name="reason"
-            placeholder="how can we help you"
+            placeholder="how can we help you?"
             options={reasons}
             theme={(theme) => ({
               ...theme,
@@ -330,6 +386,7 @@ const ContactForm = () => {
               name="distributor"
               id="distributor"
               onChange={handleChange}
+              onBlur={handleBlur}
               value={values.distributor}
             />
             <span className="ml-3">i would like to become a distributor</span>
