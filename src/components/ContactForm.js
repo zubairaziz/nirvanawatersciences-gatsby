@@ -22,7 +22,7 @@ const formikEnhancer = withFormik({
 })
 
 const ContactForm = () => {
-  const WEBSITE_URL = 'http://nirvanawatersciences.local'
+  const WEBSITE_URL = process.env.GATSBY_WORDPRESS_URL
   const USERNAME = 'admin'
   const PASSWORD = 'password'
   const FORM_ID = '89'
@@ -263,6 +263,8 @@ const ContactForm = () => {
                 onBlur={() => setFieldTouched('state', true)}
                 value={values.state}
                 placeholder="state"
+                id="state"
+                name="state"
                 options={states}
                 theme={(theme) => ({
                   ...theme,
@@ -305,6 +307,8 @@ const ContactForm = () => {
             onChange={(value) => setFieldValue('reason', value)}
             onBlur={() => setFieldTouched('reason', true)}
             value={values.reason}
+            id="reason"
+            name="reason"
             placeholder="how can we help you"
             options={reasons}
             theme={(theme) => ({

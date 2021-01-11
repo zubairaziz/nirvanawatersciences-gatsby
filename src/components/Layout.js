@@ -37,7 +37,7 @@ const Layout = (props) => {
         <main id="main-content" className={`${slug}-page`}>
           {children}
           <div className="container pt-8 md:pt-20">
-            <h4 className="text-3xl text-center md:text-5xl">subscribe to Nirvana Water Sciences</h4>
+            <h3 className="text-3xl text-center md:text-5xl">subscribe to Nirvana Water Sciences</h3>
             <SubscribeForm />
           </div>
         </main>

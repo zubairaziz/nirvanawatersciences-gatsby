@@ -5,9 +5,6 @@ import axios from 'axios'
 const SubscribeForm = () => {
   const WEBSITE_URL = process.env.GATSBY_WORDPRESS_URL
   const ENDPOINT = process.env.GATSBY_NEWSLETTER_API
-  // const CLIENT_KEY = process.env.GATSBY_NEWSLETTER_CLIENT
-  // const SECRET_KEY = process.env.GATSBY_NEWSLETTER_SECRET
-  // const API_KEY = 'nirvanawatersciencessubscribe'
   const USERNAME = process.env.GATSBY_WORDPRESS_USERNAME
   const PASSWORD = process.env.GATSBY_WORDPRESS_PASSWORD
 
@@ -84,11 +81,11 @@ const SubscribeForm = () => {
   return (
     <div className="relative hidden py-4 mb-4 md:py-8 md:mb-8 md:block">
       <form onSubmit={handleSubmit} className="relative flex items-center justify-center w-full gap-x-4">
-        <label htmlFor="email">email address</label>
+        <label htmlFor="subscribe_email">email address</label>
         <input
           className="py-0 border-0 border-b border-dark-gray md:w-96 lg:w-120 focus:ring-0"
-          id="email"
-          name="email"
+          id="subscribe_email"
+          name="subscribe_email"
           type="email"
           onChange={handleChange}
           value={values.email}
