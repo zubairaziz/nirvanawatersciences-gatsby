@@ -49,10 +49,9 @@ const listItemVariants = {
   },
 }
 
-const SiteMenu = () => {
+const SiteMenu: React.FC = () => {
   const [navIsOpen, setNavIsOpen] = useContext(NavigationContext)
-  const handleButtonPress = (e) => {
-    e.preventDefault()
+  const handleButtonPress = () => {
     setNavIsOpen(() => (navIsOpen ? false : true))
   }
 
@@ -303,13 +302,14 @@ const SiteMenu = () => {
                       className="flex flex-col gap-3 py-8 text-center md:py-0 md:text-left"
                     >
                       {data &&
-                        data?.allWpMenu?.edges[0]?.node?.menuItems?.nodes.map((item, index) => (
+                        data?.allWpMenu?.edges[0]?.node?.menuItems?.nodes.map((item: any, index: number) => (
                           <motion.li
                             key={item.url}
                             initial={false}
                             animate={navIsOpen ? 'open' : 'closed'}
                             variants={listItemVariants}
                             exit={{ opacity: 0 }}
+                            transition={{ delay: index * 100 }}
                             className="mb-3"
                           >
                             <AniLink

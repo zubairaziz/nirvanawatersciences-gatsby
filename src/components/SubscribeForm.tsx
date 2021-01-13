@@ -3,7 +3,7 @@ import { useFormik } from 'formik'
 import axios from 'axios'
 import { ModalContext } from './Layout'
 
-const SubscribeForm = () => {
+const SubscribeForm: React.FC = () => {
   const WEBSITE_URL = process.env.GATSBY_WORDPRESS_URL
   const ENDPOINT = process.env.GATSBY_NEWSLETTER_API
   const USERNAME = process.env.GATSBY_WORDPRESS_USERNAME
@@ -15,8 +15,7 @@ const SubscribeForm = () => {
   const [messageSent, setMessageSent] = useState(false)
   const [modalIsOpen, setModalIsOpen] = useContext(ModalContext)
 
-  const handleButtonPress = (e) => {
-    e.preventDefault()
+  const handleButtonPress = () => {
     setModalIsOpen(() => (modalIsOpen ? false : true))
   }
 
@@ -49,7 +48,6 @@ const SubscribeForm = () => {
       const formData = {
         email,
         status: 'confirmed',
-        // api_key: API_KEY,
       }
 
       axios({

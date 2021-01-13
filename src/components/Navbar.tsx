@@ -2,22 +2,27 @@ import React, { useContext, useEffect } from 'react'
 import { NavigationContext } from './Layout'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const [navIsOpen, setNavIsOpen] = useContext(NavigationContext)
-  const handleButtonPress = (e) => {
-    e.preventDefault()
+  const handleButtonPress = () => {
     setNavIsOpen(() => (navIsOpen ? false : true))
   }
   useEffect(() => {
-    const header = document.querySelector('.header-nav')
-    const sticky = header.offsetTop
-    const scrollCallBack = window.addEventListener('scroll', () => {
-      if (window.pageYOffset > sticky) {
-        header.classList.add('sticky', 'border-b', 'border-gray-200', 'bg-white')
-      } else {
-        header.classList.remove('sticky', 'border-b', 'border-gray-200', 'bg-white')
-      }
-    })
+    const header: HTMLElement | null = document.querySelector('.header-nav')
+    const sticky: number | undefined = header?.offsetTop
+    const scrollCallBack: any = window.addEventListener(
+      'scroll',
+      () => {
+        if (header && sticky) {
+          if (window.pageYOffset > sticky) {
+            return header.classList.add('sticky', 'border-b', 'border-gray-200', 'bg-white')
+          } else {
+            return header.classList.remove('sticky', 'border-b', 'border-gray-200', 'bg-white')
+          }
+        }
+      },
+      { capture: true, passive: true }
+    )
     return () => {
       window.removeEventListener('scroll', scrollCallBack)
     }

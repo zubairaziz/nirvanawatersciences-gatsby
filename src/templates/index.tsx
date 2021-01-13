@@ -1,9 +1,11 @@
 import * as React from 'react'
 import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
+import { PageTemplateProps } from '../types/page-template'
 
 // markup
-const IndexPageTemplate = ({ data }) => {
+const IndexPageTemplate: React.FC<PageTemplateProps> = (props) => {
+  const { data } = props
   const page = data.allWpPage.edges[0].node
   const title = page?.title
   const slug = ''
@@ -49,19 +51,19 @@ const IndexPageTemplate = ({ data }) => {
             <h2>{largeHeader}</h2>
             <div>
               <div>
-                <img src={callout1Image.localFile.publicURL} width="48" height="48" alt="" />
+                <img src={callout1Image?.localFile?.publicURL} width="48" height="48" alt="" />
                 <span>{callout1Text}</span>
               </div>
               <div>
-                <img src={callout2Image.localFile.publicURL} width="48" height="48" alt="" />
+                <img src={callout2Image?.localFile?.publicURL} width="48" height="48" alt="" />
                 <span>{callout2Text}</span>
               </div>
               <div>
-                <img src={callout3Image.localFile.publicURL} width="48" height="48" alt="" />
+                <img src={callout3Image?.localFile?.publicURL} width="48" height="48" alt="" />
                 <span>{callout3Text}</span>
               </div>
               <div>
-                <img src={callout4Image.localFile.publicURL} width="48" height="48" alt="" />
+                <img src={callout4Image?.localFile?.publicURL} width="48" height="48" alt="" />
                 <span>{callout4Text}</span>
               </div>
             </div>
@@ -88,16 +90,16 @@ const IndexPageTemplate = ({ data }) => {
           <div className="container">
             <div className="select">
               <div>
-                <img src={selectIcon1.localFile.publicURL} width="48" height="48" alt="" />
-                <img src={selectIcon2.localFile.publicURL} width="48" height="48" alt="" />
-                <img src={selectIcon3.localFile.publicURL} width="48" height="48" alt="" />
+                <img src={selectIcon1?.localFile?.publicURL} width="48" height="48" alt="" />
+                <img src={selectIcon2?.localFile?.publicURL} width="48" height="48" alt="" />
+                <img src={selectIcon3?.localFile?.publicURL} width="48" height="48" alt="" />
               </div>
               <div>
                 <img
-                  src={selectBottleImage.localFile.childImageSharp.fixed.src}
+                  src={selectBottleImage?.localFile.childImageSharp.fixed.src}
                   alt=""
-                  width={selectBottleImage.localFile.childImageSharp.fixed.width}
-                  height={selectBottleImage.localFile.childImageSharp.fixed.height}
+                  width={selectBottleImage?.localFile.childImageSharp.fixed.width}
+                  height={selectBottleImage?.localFile.childImageSharp.fixed.height}
                 />
                 <h4>{selectTitle}</h4>
                 <p>{selectContent}</p>
@@ -105,16 +107,16 @@ const IndexPageTemplate = ({ data }) => {
             </div>
             <div className="hmb">
               <div>
-                <img src={hmbIcon1.localFile.publicURL} width="48" height="48" alt="" />
-                <img src={hmbIcon2.localFile.publicURL} width="48" height="48" alt="" />
-                <img src={hmbIcon3.localFile.publicURL} width="48" height="48" alt="" />
+                <img src={hmbIcon1?.localFile?.publicURL} width="48" height="48" alt="" />
+                <img src={hmbIcon2?.localFile?.publicURL} width="48" height="48" alt="" />
+                <img src={hmbIcon3?.localFile?.publicURL} width="48" height="48" alt="" />
               </div>
               <div>
                 <img
-                  src={hmbBottleImage.localFile.childImageSharp.fixed.src}
+                  src={hmbBottleImage?.localFile.childImageSharp.fixed.src}
                   alt=""
-                  width={hmbBottleImage.localFile.childImageSharp.fixed.width}
-                  height={hmbBottleImage.localFile.childImageSharp.fixed.height}
+                  width={hmbBottleImage?.localFile.childImageSharp.fixed.width}
+                  height={hmbBottleImage?.localFile.childImageSharp.fixed.height}
                 />
                 <h4>{hmbTitle}</h4>
                 <p>{hmbContent}</p>

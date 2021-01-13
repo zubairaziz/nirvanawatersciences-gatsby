@@ -8,10 +8,22 @@ import SiteModal from './SiteModal'
 import SiteFooter from './SiteFooter'
 import SubscribeForm from './SubscribeForm'
 
-export const NavigationContext = React.createContext()
-export const ModalContext = React.createContext()
+export const NavigationContext = React.createContext<(boolean | React.Dispatch<React.SetStateAction<boolean>>)[]>([
+  false,
+])
+export const ModalContext = React.createContext<(boolean | React.Dispatch<React.SetStateAction<boolean>>)[]>([false])
 
-const Layout = (props) => {
+interface LayoutProps {
+  title: string | undefined
+  slug: string | undefined
+  canonical: string | undefined
+  metaDesc: string | undefined
+  seoTitle: string | undefined
+  ogImage: string | undefined
+  location: any
+}
+
+const Layout: React.FC<LayoutProps> = (props) => {
   const [currentInput, currentIntent] = useWhatInput()
   // eslint-disable-next-line no-console
   console.log(`input: ${currentInput}, intent: ${currentIntent}`)

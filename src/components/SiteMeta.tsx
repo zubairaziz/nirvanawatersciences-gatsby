@@ -2,7 +2,16 @@ import * as React from 'react'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-const SiteMeta = (props) => {
+interface SiteMetaProps {
+  title?: string
+  slug?: string
+  canonical?: string
+  metaDesc?: string
+  seoTitle?: string
+  ogImage?: string
+}
+
+const SiteMeta = (props: SiteMetaProps) => {
   const { title, slug, canonical, metaDesc, seoTitle, ogImage } = props
   const { site, wp } = useStaticQuery(
     graphql`
@@ -85,11 +94,6 @@ const SiteMeta = (props) => {
         url: site.siteMetadata.siteUrl,
         name: siteName,
         publisher: { '@id': `${site.siteMetadata.siteUrl}#organization` },
-        // potentialAction: {
-        //   '@type': 'SearchAction',
-        //   target: 'https://yoast.com/?s={search_term_string}',
-        //   'query-input': 'required name=search_term_string',
-        // },
       },
       {
         '@type': 'WebPage',
@@ -105,10 +109,7 @@ const SiteMeta = (props) => {
           caption: siteName,
         },
         primaryImageOfPage: { '@id': `${canonicalLink}#primaryimage` },
-        // datePublished: '2019-03-28T14:05:01+00:00',
-        // dateModified: '2019-04-11T12:24:14+00:00',
         description: metaDesc,
-        // breadcrumb: { '@id': '${canonicalLink}#breadcrumb' },
       },
     ],
   }

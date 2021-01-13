@@ -1,21 +1,23 @@
 import * as React from 'react'
 import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
+import { PageTemplateProps } from '../types/page-template'
 
 // markup
-const PostTemplate = ({ data }) => {
+const PostTemplate: React.FC<PageTemplateProps> = (props) => {
+  const { data } = props
   const post = data.allWpPost.edges[0].node
   const title = post?.title
   const slug = `blog/${post?.slug}`
   const canonical = post?.seo?.canonical
   const metaDesc = post?.seo?.metaDesc
-  const seoTitle = post?.seo?.title
+  const seoTitle = post?.seo?.seoTitle
   const ogImage = post?.seo?.opengraphImage?.localFile?.childImageSharp?.fixed?.src
   return (
     <Layout title={title} slug={slug} canonical={canonical} metaDesc={metaDesc} seoTitle={seoTitle} ogImage={ogImage}>
       <article>
         <h1>{post.title}</h1>
-        <div className="richtext" dangerouslySetInnerHTML={{ __html: post.content }} />
+        {post?.content && <div className="richtext" dangerouslySetInnerHTML={{ __html: post.content }} />}
       </article>
     </Layout>
   )

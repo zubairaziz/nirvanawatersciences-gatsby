@@ -1,9 +1,11 @@
 import * as React from 'react'
 import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
+import { PageTemplateProps } from '../types/page-template'
 
 // markup
-const IndexPageTemplate = ({ data }) => {
+const SustainabilityPageTemplate: React.FC<PageTemplateProps> = (props) => {
+  const { data } = props
   const page = data.allWpPage.edges[0].node
   const { title, slug } = page
   const { seo, acfPageHeader, acfSustainabilityContent } = page
@@ -37,39 +39,45 @@ const IndexPageTemplate = ({ data }) => {
               {smallHeader ? smallHeader : title}
               <span>{largeHeader}</span>
             </h1>
-            <div className="richtext" dangerouslySetInnerHTML={{ __html: leadIn }} />{' '}
+            {leadIn ? <div className="richtext" dangerouslySetInnerHTML={{ __html: leadIn }} /> : null}
           </div>
-          <img src={sustainabilityHeaderLargeImage.localFile.childImageSharp.fluid.src} alt="" />
-          <img src={sustainabilityHeaderSmallImage.localFile.childImageSharp.fluid.src} alt="" />
+          <img src={sustainabilityHeaderLargeImage?.localFile.childImageSharp.fluid.src} alt="" />
+          <img src={sustainabilityHeaderSmallImage?.localFile.childImageSharp.fluid.src} alt="" />
           {page.content ? <div className="richtext" dangerouslySetInnerHTML={{ __html: page.content }} /> : null}
         </section>
 
         <section className="min-h-screen">
-          <img src={sustainabilityPanel1Image.localFile.childImageSharp.fluid.src} alt="" />
+          <img src={sustainabilityPanel1Image?.localFile.childImageSharp.fluid.src} alt="" />
           <div className="container">
             <h2>{sustainabilityPanel1Title}</h2>
             <h3>{sustainabilityPanel1Subhead}</h3>
-            <div className="richtext" dangerouslySetInnerHTML={{ __html: sustainabilityPanel1Content }} />
+            {sustainabilityPanel1Content ? (
+              <div className="richtext" dangerouslySetInnerHTML={{ __html: sustainabilityPanel1Content }} />
+            ) : null}
           </div>
         </section>
 
         <section className="min-h-screen">
-          <img src={sustainabilityPanel2Icon.localFile.publicURL} alt="" />
-          <img src={sustainabilityPanel2Image.localFile.childImageSharp.fluid.src} alt="" />
+          <img src={sustainabilityPanel2Icon?.localFile.publicURL} alt="" />
+          <img src={sustainabilityPanel2Image?.localFile.childImageSharp.fluid.src} alt="" />
           <div className="container">
             <h2>{sustainabilityPanel2Title}</h2>
             <h3>{sustainabilityPanel2Subhead}</h3>
-            <div className="richtext" dangerouslySetInnerHTML={{ __html: sustainabilityPanel2Content }} />
+            {sustainabilityPanel2Content ? (
+              <div className="richtext" dangerouslySetInnerHTML={{ __html: sustainabilityPanel2Content }} />
+            ) : null}
           </div>
         </section>
 
         <section className="min-h-screen">
-          <img src={sustainabilityPanel3Icon.localFile.publicURL} alt="" />
-          <img src={sustainabilityPanel3Image.localFile.childImageSharp.fluid.src} alt="" />
+          <img src={sustainabilityPanel3Icon?.localFile.publicURL} alt="" />
+          <img src={sustainabilityPanel3Image?.localFile.childImageSharp.fluid.src} alt="" />
           <div className="container">
             <h2>{sustainabilityPanel3Title}</h2>
             <h3>{sustainabilityPanel3Subhead}</h3>
-            <div className="richtext" dangerouslySetInnerHTML={{ __html: sustainabilityPanel3Content }} />
+            {sustainabilityPanel3Content ? (
+              <div className="richtext" dangerouslySetInnerHTML={{ __html: sustainabilityPanel3Content }} />
+            ) : null}
           </div>
         </section>
       </article>
@@ -166,4 +174,4 @@ export const query = graphql`
     }
   }
 `
-export default IndexPageTemplate
+export default SustainabilityPageTemplate

@@ -20,11 +20,10 @@ const variants = {
   },
 }
 
-const SiteModal = () => {
-  const ref = useRef()
+const SiteModal: React.FC = () => {
+  const ref: any = useRef()
   const [modalIsOpen, setModalIsOpen] = useContext(ModalContext)
-  const handleButtonPress = (e) => {
-    e.preventDefault()
+  const handleButtonPress = () => {
     setModalIsOpen(() => (modalIsOpen ? false : true))
   }
   useClickOutside(ref, () => setModalIsOpen(false))

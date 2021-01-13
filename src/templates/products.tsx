@@ -1,9 +1,11 @@
 import * as React from 'react'
 import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
+import { PageTemplateProps } from '../types/page-template'
 
 // markup
-const IndexPageTemplate = ({ data }) => {
+const ProductsPageTemplate: React.FC<PageTemplateProps> = (props) => {
+  const { data } = props
   const page = data.allWpPage.edges[0].node
   const { title, slug } = page
   const { seo } = page
@@ -31,31 +33,31 @@ const IndexPageTemplate = ({ data }) => {
               <div>
                 <div>
                   <img
-                    src={acfProductsPageHMB.hmbImage.localFile.childImageSharp.fixed.src}
+                    src={acfProductsPageHMB?.hmbImage?.localFile?.childImageSharp?.fixed?.src}
                     alt=""
-                    width={acfProductsPageHMB.hmbImage.localFile.childImageSharp.fixed.width}
-                    height={acfProductsPageHMB.hmbImage.localFile.childImageSharp.fixed.height}
+                    width={acfProductsPageHMB?.hmbImage?.localFile?.childImageSharp?.fixed?.width}
+                    height={acfProductsPageHMB?.hmbImage?.localFile?.childImageSharp?.fixed?.height}
                   />
-                  <h3>{acfProductsPageHMB.hmbTitle}</h3>
+                  <h3>{acfProductsPageHMB?.hmbTitle}</h3>
                 </div>
                 <div>
-                  <h4>{acfProductsPageHMB.hmbTitle}</h4>
+                  <h4>{acfProductsPageHMB?.hmbTitle}</h4>
                   <ul>
                     <li>
-                      <img src={acfProductsPageHMB.hmbIcon1.localFile.publicURL} alt="" width="40" height="40" />
-                      <span>{acfProductsPageHMB.hmbItem1}</span>
+                      <img src={acfProductsPageHMB?.hmbIcon1?.localFile?.publicURL} alt="" width="40" height="40" />
+                      <span>{acfProductsPageHMB?.hmbItem1}</span>
                     </li>
                     <li>
-                      <img src={acfProductsPageHMB.hmbIcon2.localFile.publicURL} alt="" width="40" height="40" />
-                      <span>{acfProductsPageHMB.hmbItem2}</span>
+                      <img src={acfProductsPageHMB?.hmbIcon2?.localFile?.publicURL} alt="" width="40" height="40" />
+                      <span>{acfProductsPageHMB?.hmbItem2}</span>
                     </li>
                     <li>
-                      <img src={acfProductsPageHMB.hmbIcon3.localFile.publicURL} alt="" width="40" height="40" />
-                      <span>{acfProductsPageHMB.hmbItem3}</span>
+                      <img src={acfProductsPageHMB?.hmbIcon3?.localFile?.publicURL} alt="" width="40" height="40" />
+                      <span>{acfProductsPageHMB?.hmbItem3}</span>
                     </li>
                     <li>
-                      <img src={acfProductsPageHMB.hmbIcon4.localFile.publicURL} alt="" width="40" height="40" />
-                      <span>{acfProductsPageHMB.hmbItem4}</span>
+                      <img src={acfProductsPageHMB?.hmbIcon4?.localFile?.publicURL} alt="" width="40" height="40" />
+                      <span>{acfProductsPageHMB?.hmbItem4}</span>
                     </li>
                   </ul>
                 </div>
@@ -63,31 +65,51 @@ const IndexPageTemplate = ({ data }) => {
               <div>
                 <div>
                   <img
-                    src={acfProductsPageSelect.selectImage.localFile.childImageSharp.fixed.src}
+                    src={acfProductsPageSelect?.selectImage?.localFile?.childImageSharp?.fixed?.src}
                     alt=""
-                    width={acfProductsPageSelect.selectImage.localFile.childImageSharp.fixed.width}
-                    height={acfProductsPageSelect.selectImage.localFile.childImageSharp.fixed.height}
+                    width={acfProductsPageSelect?.selectImage?.localFile?.childImageSharp?.fixed?.width}
+                    height={acfProductsPageSelect?.selectImage?.localFile?.childImageSharp?.fixed?.height}
                   />
-                  <h3>{acfProductsPageSelect.selectTitle}</h3>
+                  <h3>{acfProductsPageSelect?.selectTitle}</h3>
                 </div>
                 <div>
-                  <h4>{acfProductsPageSelect.selectTitle}</h4>
+                  <h4>{acfProductsPageSelect?.selectTitle}</h4>
                   <ul>
                     <li>
-                      <img src={acfProductsPageSelect.selectIcon1.localFile.publicURL} alt="" width="40" height="40" />
-                      <span>{acfProductsPageSelect.selectItem1}</span>
+                      <img
+                        src={acfProductsPageSelect?.selectIcon1?.localFile?.publicURL}
+                        alt=""
+                        width="40"
+                        height="40"
+                      />
+                      <span>{acfProductsPageSelect?.selectItem1}</span>
                     </li>
                     <li>
-                      <img src={acfProductsPageSelect.selectIcon2.localFile.publicURL} alt="" width="40" height="40" />
-                      <span>{acfProductsPageSelect.selectItem2}</span>
+                      <img
+                        src={acfProductsPageSelect?.selectIcon2?.localFile?.publicURL}
+                        alt=""
+                        width="40"
+                        height="40"
+                      />
+                      <span>{acfProductsPageSelect?.selectItem2}</span>
                     </li>
                     <li>
-                      <img src={acfProductsPageSelect.selectIcon3.localFile.publicURL} alt="" width="40" height="40" />
-                      <span>{acfProductsPageSelect.selectItem3}</span>
+                      <img
+                        src={acfProductsPageSelect?.selectIcon3?.localFile?.publicURL}
+                        alt=""
+                        width="40"
+                        height="40"
+                      />
+                      <span>{acfProductsPageSelect?.selectItem3}</span>
                     </li>
                     <li>
-                      <img src={acfProductsPageSelect.selectIcon4.localFile.publicURL} alt="" width="40" height="40" />
-                      <span>{acfProductsPageSelect.selectItem4}</span>
+                      <img
+                        src={acfProductsPageSelect?.selectIcon4?.localFile?.publicURL}
+                        alt=""
+                        width="40"
+                        height="40"
+                      />
+                      <span>{acfProductsPageSelect?.selectItem4}</span>
                     </li>
                   </ul>
                 </div>
@@ -95,51 +117,51 @@ const IndexPageTemplate = ({ data }) => {
               <div>
                 <div>
                   <img
-                    src={acfProductsPageSparkling.sparklingImage.localFile.childImageSharp.fixed.src}
+                    src={acfProductsPageSparkling?.sparklingImage?.localFile?.childImageSharp?.fixed?.src}
                     alt=""
-                    width={acfProductsPageSparkling.sparklingImage.localFile.childImageSharp.fixed.width}
-                    height={acfProductsPageSparkling.sparklingImage.localFile.childImageSharp.fixed.height}
+                    width={acfProductsPageSparkling?.sparklingImage?.localFile?.childImageSharp?.fixed?.width}
+                    height={acfProductsPageSparkling?.sparklingImage?.localFile?.childImageSharp?.fixed?.height}
                   />
-                  <h3>{acfProductsPageSparkling.sparklingTitle}</h3>
+                  <h3>{acfProductsPageSparkling?.sparklingTitle}</h3>
                 </div>
                 <div>
-                  <h4>{acfProductsPageSparkling.sparklingTitle}</h4>
+                  <h4>{acfProductsPageSparkling?.sparklingTitle}</h4>
                   <ul>
                     <li>
                       <img
-                        src={acfProductsPageSparkling.sparklingIcon1.localFile.publicURL}
+                        src={acfProductsPageSparkling?.sparklingIcon1?.localFile?.publicURL}
                         alt=""
                         width="40"
                         height="40"
                       />
-                      <span>{acfProductsPageSparkling.sparklingItem1}</span>
+                      <span>{acfProductsPageSparkling?.sparklingItem1}</span>
                     </li>
                     <li>
                       <img
-                        src={acfProductsPageSparkling.sparklingIcon2.localFile.publicURL}
+                        src={acfProductsPageSparkling?.sparklingIcon2?.localFile?.publicURL}
                         alt=""
                         width="40"
                         height="40"
                       />
-                      <span>{acfProductsPageSparkling.sparklingItem2}</span>
+                      <span>{acfProductsPageSparkling?.sparklingItem2}</span>
                     </li>
                     <li>
                       <img
-                        src={acfProductsPageSparkling.sparklingIcon3.localFile.publicURL}
+                        src={acfProductsPageSparkling?.sparklingIcon3?.localFile?.publicURL}
                         alt=""
                         width="40"
                         height="40"
                       />
-                      <span>{acfProductsPageSparkling.sparklingItem3}</span>
+                      <span>{acfProductsPageSparkling?.sparklingItem3}</span>
                     </li>
                     <li>
                       <img
-                        src={acfProductsPageSparkling.sparklingIcon4.localFile.publicURL}
+                        src={acfProductsPageSparkling?.sparklingIcon4?.localFile?.publicURL}
                         alt=""
                         width="40"
                         height="40"
                       />
-                      <span>{acfProductsPageSparkling.sparklingItem4}</span>
+                      <span>{acfProductsPageSparkling?.sparklingItem4}</span>
                     </li>
                   </ul>
                 </div>
@@ -158,20 +180,20 @@ const IndexPageTemplate = ({ data }) => {
           <div>
             <ul>
               <li>
-                <img src={acfProductsPageCallouts.productsCallout1Image.localFile} alt="" />
-                <span>{acfProductsPageCallouts.productsCallout1Text}</span>
+                <img src={acfProductsPageCallouts?.productsCallout1Image?.localFile?.publicURL} alt="" />
+                <span>{acfProductsPageCallouts?.productsCallout1Text}</span>
               </li>
               <li>
-                <img src={acfProductsPageCallouts.productsCallout2Image.localFile} alt="" />
-                <span>{acfProductsPageCallouts.productsCallout2Text}</span>
+                <img src={acfProductsPageCallouts?.productsCallout2Image?.localFile?.publicURL} alt="" />
+                <span>{acfProductsPageCallouts?.productsCallout2Text}</span>
               </li>
               <li>
-                <img src={acfProductsPageCallouts.productsCallout3Image.localFile} alt="" />
-                <span>{acfProductsPageCallouts.productsCallout3Text}</span>
+                <img src={acfProductsPageCallouts?.productsCallout3Image?.localFile?.publicURL} alt="" />
+                <span>{acfProductsPageCallouts?.productsCallout3Text}</span>
               </li>
               <li>
-                <img src={acfProductsPageCallouts.productsCallout4Image.localFile} alt="" />
-                <span>{acfProductsPageCallouts.productsCallout4Text}</span>
+                <img src={acfProductsPageCallouts?.productsCallout4Image?.localFile?.publicURL} alt="" />
+                <span>{acfProductsPageCallouts?.productsCallout4Text}</span>
               </li>
             </ul>
           </div>
@@ -360,4 +382,4 @@ export const query = graphql`
     }
   }
 `
-export default IndexPageTemplate
+export default ProductsPageTemplate

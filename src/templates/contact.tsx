@@ -1,19 +1,19 @@
 import * as React from 'react'
+import Img from 'gatsby-image'
 import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
 import ContactForm from '../components/ContactForm'
-import { formatPhoneNumber, cleanPhoneNumber } from '../utils/utils.ts'
-import Img from 'gatsby-image'
+import { formatPhoneNumber, cleanPhoneNumber } from '../utils/utils'
+import { PageTemplateProps } from '../types/page-template'
 
 // markup
-const IndexPageTemplate = ({ data }) => {
+const ContactPageTemplate: React.FC<PageTemplateProps> = (props) => {
+  const { data } = props
   const page = data.allWpPage.edges[0].node
   const { site } = data
   const { business, addressStreet, addressCity, addressState, addressZip, phone1, phone2 } = site.siteMetadata
-  const { title, slug } = page
-  const { seo } = page
+  const { title, slug, seo, acfPageHeader, acfContactPageContent, acfContactPageHeaderImage } = page
   const { canonical, metaDesc, seoTitle } = seo
-  const { acfPageHeader, acfContactPageContent, acfContactPageHeaderImage } = page
   const { smallHeader, largeHeader } = acfPageHeader
 
   return (
@@ -57,7 +57,7 @@ const IndexPageTemplate = ({ data }) => {
               </div>
             </header>
           </div>
-          {page.content ? <div className="richtext" dangerouslySetInnerHTML={{ __html: page.content }} /> : null}
+          {page?.content ? <div className="richtext" dangerouslySetInnerHTML={{ __html: page.content }} /> : null}
         </section>
 
         <section className="md:pb-16">
@@ -131,6 +131,7 @@ const IndexPageTemplate = ({ data }) => {
     </Layout>
   )
 }
+
 export const query = graphql`
   query($slug: String!) {
     site {
@@ -181,4 +182,5 @@ export const query = graphql`
     }
   }
 `
-export default IndexPageTemplate
+
+export default ContactPageTemplate

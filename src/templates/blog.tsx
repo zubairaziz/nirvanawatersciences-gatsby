@@ -4,17 +4,19 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import SubscribeForm from '../components/SubscribeForm'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
+import { PageTemplateProps } from '../types/page-template'
 
 // markup
-const BlogPageTemplate = ({ data }) => {
+const BlogPageTemplate: React.FC<PageTemplateProps> = (props) => {
+  const { data } = props
   const page = data.allWpPage.edges[0].node
   const posts = data.allWpPost.edges
   const title = page?.title
   const slug = page?.slug
   const canonical = page?.seo?.canonical
   const metaDesc = page?.seo?.metaDesc
-  const seoTitle = page?.seo?.title
-  const ogImage = page?.seo?.opengraphImage?.localFile?.childImageSharp?.fixed?.src
+  const seoTitle = page?.seo?.seoTitle
+  const ogImage = null
   return (
     <Layout title={title} slug={slug} canonical={canonical} metaDesc={metaDesc} seoTitle={seoTitle} ogImage={ogImage}>
       <article>
@@ -35,7 +37,6 @@ const BlogPageTemplate = ({ data }) => {
                 <Img
                   className="w-full aspect-w-16 aspect-h-9"
                   fluid={posts[0]?.node?.acfFeaturedImage?.featuredImage?.localFile?.childImageSharp.fluid}
-                  objectFit="cover"
                   Tag="figure"
                   imgStyle={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                 />
@@ -49,7 +50,6 @@ const BlogPageTemplate = ({ data }) => {
                 <Img
                   className="w-full aspect-w-16 aspect-h-9"
                   fluid={posts[1]?.node?.acfFeaturedImage?.featuredImage?.localFile?.childImageSharp.fluid}
-                  objectFit="cover"
                   Tag="figure"
                   imgStyle={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                 />
@@ -66,7 +66,6 @@ const BlogPageTemplate = ({ data }) => {
                   <Img
                     className="w-full aspect-w-16 aspect-h-9"
                     fluid={post?.node?.acfFeaturedImage?.featuredImage?.localFile?.childImageSharp.fluid}
-                    objectFit="cover"
                     Tag="figure"
                     imgStyle={{ width: '100%', height: 'auto', objectFit: 'cover' }}
                   />

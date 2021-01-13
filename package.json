@@ -8,13 +8,14 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "ENABLE_GATSBY_REFRESH_ENDPOINT=true GATSBY_EXPERIMENTAL_LAZY_DEVJS=true gatsby develop",
+    "develop": "ENABLE_GATSBY_REFRESH_ENDPOINT=true GATSBY_EXPERIMENTAL_LAZY_DEVJS=true FAST_DEV=true FAST_REFRESH=true gatsby develop",
     "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint --fix src/**/*.js"
+    "lint:fix": "eslint --fix src/**/*.{ts,tsx,js,jsx}",
+    "type-check": "tsc --noEmit"
   },
   "license": "0BSD",
   "dependencies": {
@@ -38,6 +39,7 @@
     "gatsby-plugin-scroll-reveal": "^0.0.7",
     "gatsby-plugin-sharp": "^2.12.0",
     "gatsby-plugin-transition-link": "^1.20.5",
+    "gatsby-plugin-typescript": "^2.10.0",
     "gatsby-source-filesystem": "^2.9.0",
     "gatsby-source-wordpress-experimental": "^6.2.0",
     "gatsby-transformer-sharp": "^2.10.0",
@@ -54,6 +56,13 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/plugin-proposal-decorators": "^7.12.12",
+    "@types/node": "^14.14.20",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-helmet": "^6.1.0",
+    "@types/react-select": "^3.1.2",
+    "@typescript-eslint/eslint-plugin": "^4.12.0",
+    "@typescript-eslint/parser": "^4.12.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.17.0",
     "eslint-config-prettier": "^7.1.0",
@@ -67,6 +76,7 @@
     "gatsby-plugin-eslint": "^2.0.8",
     "postcss-import": "^14.0.0",
     "postcss-nested": "^5.0.3",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3"
   }
 }

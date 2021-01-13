@@ -1,9 +1,12 @@
 import * as React from 'react'
 import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
+import { PageTemplateProps } from '../types/page-template'
+import { WPMemberProps } from '../types/wp-member'
 
 // markup
-const IndexPageTemplate = ({ data }) => {
+const AboutPageTemplate: React.FC<PageTemplateProps> = (props) => {
+  const { data } = props
   const page = data.allWpPage.edges[0].node
   const teamMembers = data.allWpTeamMember.edges
   const { title, slug } = page
@@ -34,7 +37,7 @@ const IndexPageTemplate = ({ data }) => {
           {page.content ? <div className="richtext" dangerouslySetInnerHTML={{ __html: page.content }} /> : null}
         </section>
 
-        <img src={aboutFeaturedImage.localFile.childImageSharp.fluid.src} alt="" />
+        <img src={aboutFeaturedImage?.localFile?.childImageSharp?.fluid?.src} alt="" />
 
         <section className="min-h-screen">
           <div className="container">
@@ -49,21 +52,23 @@ const IndexPageTemplate = ({ data }) => {
               <h3>{aboutPanel2Header}</h3>
             </div>
             <div>
-              <div className="richtext" dangerouslySetInnerHTML={{ __html: aboutPanel2Content }} />
+              {aboutPanel2Content ? (
+                <div className="richtext" dangerouslySetInnerHTML={{ __html: aboutPanel2Content }} />
+              ) : null}
             </div>
           </div>
           <ul>
             <li>
-              <img src={aboutPanel2Image1.localFile.childImageSharp.fluid.src} alt="" />
+              <img src={aboutPanel2Image1?.localFile?.childImageSharp?.fluid?.src} alt="" />
             </li>
             <li>
-              <img src={aboutPanel2Image2.localFile.childImageSharp.fluid.src} alt="" />
+              <img src={aboutPanel2Image2?.localFile?.childImageSharp?.fluid?.src} alt="" />
             </li>
             <li>
-              <img src={aboutPanel2Image3.localFile.childImageSharp.fluid.src} alt="" />
+              <img src={aboutPanel2Image3?.localFile?.childImageSharp?.fluid?.src} alt="" />
             </li>
             <li>
-              <img src={aboutPanel2Image4.localFile.childImageSharp.fluid.src} alt="" />
+              <img src={aboutPanel2Image4?.localFile?.childImageSharp?.fluid?.src} alt="" />
             </li>
           </ul>
         </section>
@@ -75,7 +80,7 @@ const IndexPageTemplate = ({ data }) => {
             </div>
             <div>
               <ul>
-                {teamMembers.map((member) => (
+                {teamMembers.map((member: WPMemberProps) => (
                   <li key={member.node.id}>
                     <div>{member.node.title}</div>
                     <div>{member.node.acfTeamMember.memberRole}</div>
@@ -175,4 +180,4 @@ export const query = graphql`
     }
   }
 `
-export default IndexPageTemplate
+export default AboutPageTemplate

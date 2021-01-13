@@ -3,7 +3,7 @@ import * as React from 'react'
 import FooterPrimaryMenu from './FooterPrimaryMenu'
 import FooterSecondaryMenu from './FooterSecondaryMenu'
 
-const SiteFooter = () => (
+const SiteFooter: React.FC = () => (
   <footer className="p-4 text-white bg-dark-gray md:pb-16">
     <div className="container">
       <div className="grid grid-cols-1 md:grid-cols-2">

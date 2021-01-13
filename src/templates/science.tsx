@@ -1,9 +1,11 @@
 import * as React from 'react'
 import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
+import { PageTemplateProps } from '../types/page-template'
 
 // markup
-const IndexPageTemplate = ({ data }) => {
+const SciencePageTemplate: React.FC<PageTemplateProps> = (props) => {
+  const { data } = props
   const page = data.allWpPage.edges[0].node
   const { title, slug } = page
   const { seo, acfPageHeader, acfScienceContent } = page
@@ -37,7 +39,7 @@ const IndexPageTemplate = ({ data }) => {
             <h1>
               {smallHeader ? smallHeader : title} <span>{largeHeader}</span>
             </h1>
-            <div className="richtext" dangerouslySetInnerHTML={{ __html: leadIn }} />
+            {leadIn ? <div className="richtext" dangerouslySetInnerHTML={{ __html: leadIn }} /> : null}
             <a href={scienceHeaderVideo}>Video</a>
           </div>
           {page.content ? <div className="richtext" dangerouslySetInnerHTML={{ __html: page.content }} /> : null}
@@ -45,9 +47,11 @@ const IndexPageTemplate = ({ data }) => {
 
         <section className="min-h-screen">
           <div className="container">
-            <img src={sciencePanel1Image.localFile.childImageSharp.fixed.src} alt="" />
+            <img src={sciencePanel1Image?.localFile?.childImageSharp?.fixed?.src} alt="" />
             <h2>{sciencePanel1Title}</h2>
-            <div className="richtext" dangerouslySetInnerHTML={{ __html: sciencePanel1Content }} />
+            {sciencePanel1Content ? (
+              <div className="richtext" dangerouslySetInnerHTML={{ __html: sciencePanel1Content }} />
+            ) : null}
           </div>
         </section>
 
@@ -60,13 +64,15 @@ const IndexPageTemplate = ({ data }) => {
 
         <section className="min-h-screen">
           <div className="container">
-            <img src={sciencePanel3Icon.localFile.publicURL} alt="" />
+            <img src={sciencePanel3Icon?.localFile?.publicURL} alt="" />
             <h2>
               <span>{sciencePanel3SmallTitle}</span>
               <span> {sciencePanel3LargeTitle}</span>
             </h2>
-            <div className="richtext" dangerouslySetInnerHTML={{ __html: sciencePanel3Content }} />
-            <img src={sciencePanel3Image.localFile.childImageSharp.fluid.src} alt="" />
+            {sciencePanel3Content ? (
+              <div className="richtext" dangerouslySetInnerHTML={{ __html: sciencePanel3Content }} />
+            ) : null}
+            <img src={sciencePanel3Image?.localFile?.childImageSharp?.fluid?.src} alt="" />
           </div>
         </section>
 
@@ -80,28 +86,32 @@ const IndexPageTemplate = ({ data }) => {
 
         <section className="min-h-screen">
           <div className="container">
-            <img src={sciencePanel3Icon.localFile.publicURL} alt="" />
+            <img src={sciencePanel3Icon?.localFile.publicURL} alt="" />
             <h2>
               <span>{sciencePanel3SmallTitle}</span>
               <span> {sciencePanel3LargeTitle}</span>
             </h2>
-            <div className="richtext" dangerouslySetInnerHTML={{ __html: sciencePanel3Content }} />
-            <img src={sciencePanel3Image.localFile.childImageSharp.fluid.src} alt="" />
+            {sciencePanel3Content ? (
+              <div className="richtext" dangerouslySetInnerHTML={{ __html: sciencePanel3Content }} />
+            ) : null}
+            <img src={sciencePanel3Image?.localFile.childImageSharp.fluid.src} alt="" />
           </div>
         </section>
 
         <section className="min-h-screen">
           <h2>{sciencePanel4Title}</h2>
-          <div className="richtext" dangerouslySetInnerHTML={{ __html: sciencePanel4Content }} />
+          {sciencePanel4Content ? (
+            <div className="richtext" dangerouslySetInnerHTML={{ __html: sciencePanel4Content }} />
+          ) : null}
           <ul>
             <li>
-              <img src={sciencePanel4Image1.localFile.childImageSharp.fixed.src} alt="" />
+              <img src={sciencePanel4Image1?.localFile.childImageSharp.fixed.src} alt="" />
             </li>
             <li>
-              <img src={sciencePanel4Image2.localFile.childImageSharp.fixed.src} alt="" />
+              <img src={sciencePanel4Image2?.localFile.childImageSharp.fixed.src} alt="" />
             </li>
             <li>
-              <img src={sciencePanel4Image3.localFile.childImageSharp.fixed.src} alt="" />
+              <img src={sciencePanel4Image3?.localFile.childImageSharp.fixed.src} alt="" />
             </li>
           </ul>
         </section>
@@ -196,4 +206,4 @@ export const query = graphql`
     }
   }
 `
-export default IndexPageTemplate
+export default SciencePageTemplate
