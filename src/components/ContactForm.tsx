@@ -14,7 +14,7 @@ interface FormProps {
   state: any
   zip: string
   reason: any
-  distributor: string
+  distributor: any
   message: string
 }
 
@@ -115,14 +115,11 @@ const ContactForm: React.FunctionComponent = () => {
         },
       })
       if (res) {
-        setFormStatus(formStatusProps.success)
         resetForm({})
+        setFormStatus(formStatusProps.success)
       }
     } catch (error) {
-      const response = error.response
-      if (response.status !== 200) {
-        setFormStatus(formStatusProps.error)
-      }
+      setFormStatus(formStatusProps.error)
     } finally {
       setDisplayFormStatus(true)
     }
@@ -140,7 +137,7 @@ const ContactForm: React.FunctionComponent = () => {
           state: '',
           zip: '',
           reason: '',
-          distributor: '',
+          distributor: false,
           message: '',
         }}
         onSubmit={(values: FormProps, actions) => {
@@ -156,16 +153,7 @@ const ContactForm: React.FunctionComponent = () => {
         })}
       >
         {(props: FormikProps<FormProps>) => {
-          const {
-            values,
-            touched,
-            errors,
-            isSubmitting,
-            handleBlur,
-            handleChange,
-            setFieldValue,
-            setFieldTouched,
-          } = props
+          const { touched, errors, values, isSubmitting, setFieldValue, setFieldTouched } = props
           return (
             <div>
               <p className="pb-4 md:pl-2">(*) indicates required fields</p>
@@ -421,15 +409,11 @@ const ContactForm: React.FunctionComponent = () => {
                   </div>
                 </div>
               </Form>
-              {displayFormStatus && (
+              {displayFormStatus ? (
                 <div className="formStatus">
-                  {formStatus.type === 'error' ? (
-                    <p className={formStatus.type}>{formStatus.message}</p>
-                  ) : formStatus.type === 'success' ? (
-                    <p className={formStatus.type}>{formStatus.message}</p>
-                  ) : null}
+                  <p className={formStatus.type}>{formStatus.message}</p>
                 </div>
-              )}
+              ) : null}
             </div>
           )
         }}

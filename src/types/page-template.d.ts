@@ -2,6 +2,7 @@ import { PageProps } from 'gatsby'
 import { WPPageProps } from './wp-page'
 import { WPPostProps } from './wp-post'
 import { WPMemberProps } from './wp-member'
+import { WPCategoryProps } from './wp-category'
 
 export interface PageTemplateProps extends PageProps {
   data: {
@@ -27,5 +28,9 @@ export interface PageTemplateProps extends PageProps {
     allWpTeamMember: {
       edges: Array<WPMemberProps>
     }
+    allWpCategory: {
+      edges: Array<WPCategoryProps>
+    }
   }
+  pageContext: any
 }

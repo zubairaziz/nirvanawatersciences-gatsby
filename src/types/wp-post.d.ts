@@ -6,6 +6,7 @@ export interface WPPostProps {
     title: string | undefined
     slug: string | undefined
     content: string | undefined
+    date: string | undefined
     seo: {
       canonical: string | undefined
       metaDesc: string | undefined
@@ -18,6 +19,9 @@ export interface WPPostProps {
     acfPageHeader: {
       smallHeader: string | undefined
       largeHeader: string | undefined
+    }
+    categories: {
+      nodes: Array<any>
     }
   }
 }

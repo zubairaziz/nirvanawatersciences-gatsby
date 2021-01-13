@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import useWhatInput from 'react-use-what-input'
 
 import Navbar from './Navbar'
@@ -8,28 +8,34 @@ import SiteModal from './SiteModal'
 import SiteFooter from './SiteFooter'
 import SubscribeForm from './SubscribeForm'
 
-export const NavigationContext = React.createContext<(boolean | React.Dispatch<React.SetStateAction<boolean>>)[]>([
-  false,
-])
-export const ModalContext = React.createContext<(boolean | React.Dispatch<React.SetStateAction<boolean>>)[]>([false])
-
 interface LayoutProps {
   title: string | undefined
   slug: string | undefined
   canonical: string | undefined
   metaDesc: string | undefined
   seoTitle: string | undefined
-  ogImage: string | undefined
-  location: any
+  ogImage?: string
+}
+
+export const NavigationContext = React.createContext<[boolean, any]>([false, null])
+export const ModalContext = React.createContext<[boolean, any]>([false, null])
+
+const NavigationProvider: React.FC<React.ReactNode> = ({ children }) => {
+  const [navIsOpen, setNavIsOpen] = React.useState<boolean>(false)
+
+  return <NavigationContext.Provider value={[navIsOpen, setNavIsOpen]}>{children}</NavigationContext.Provider>
+}
+
+const ModalProvider: React.FC<React.ReactNode> = ({ children }) => {
+  const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false)
+
+  return <ModalContext.Provider value={[modalIsOpen, setModalIsOpen]}>{children}</ModalContext.Provider>
 }
 
 const Layout: React.FC<LayoutProps> = (props) => {
   const [currentInput, currentIntent] = useWhatInput()
   // eslint-disable-next-line no-console
   console.log(`input: ${currentInput}, intent: ${currentIntent}`)
-  const [navIsOpen, setNavIsOpen] = useState(false)
-  const [modalIsOpen, setModalIsOpen] = useState(false)
-
   const { title, slug, children, canonical, metaDesc, seoTitle, ogImage } = props
   return (
     <div>
@@ -45,11 +51,11 @@ const Layout: React.FC<LayoutProps> = (props) => {
         Skip to main content
       </a>
       <div style={{ gridTemplateRows: 'auto 1fr auto' }} className="grid min-h-screen">
-        <NavigationContext.Provider value={[navIsOpen, setNavIsOpen]}>
+        <NavigationProvider>
           <SiteMenu />
-          <Navbar location={props.location} />
-        </NavigationContext.Provider>
-        <ModalContext.Provider value={[modalIsOpen, setModalIsOpen]}>
+          <Navbar />
+        </NavigationProvider>
+        <ModalProvider>
           <main id="main-content" className={`${slug}-page`}>
             {children}
             <div className="container pt-8 md:pt-20">
@@ -58,7 +64,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
             </div>
           </main>
           <SiteModal />
-        </ModalContext.Provider>
+        </ModalProvider>
         <SiteFooter />
       </div>
     </div>

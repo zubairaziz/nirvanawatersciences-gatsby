@@ -24,6 +24,7 @@ module.exports = {
   variants: {
     extend: {
       animation: ['hover', 'focus'],
+      borderOpacity: ['active'],
     },
   },
   plugins: [aspectRatio, forms],

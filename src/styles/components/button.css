@@ -1,5 +1,5 @@
 .button {
-  @apply block w-full px-8 py-2 text-xl text-center lowercase transition-colors duration-300 border;
+  @apply block w-full px-8 py-3 text-xl leading-none text-center lowercase transition-colors duration-300 border;
   line-height: 1 !important;
 
   @screen md {
